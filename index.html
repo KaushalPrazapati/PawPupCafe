@@ -1,0 +1,1192 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gold Bakers | Premium quality Cake at wow price</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Tailwind Config for Custom Colors/Fonts -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Poppins", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+            colors: {
+              stone: {
+                50: "#fafaf9",
+                100: "#f5f5f4",
+                200: "#e7e5e4",
+                400: "#a8a29e",
+                500: "#78716c",
+                600: "#57534e",
+                800: "#292524",
+                900: "#1c1917",
+              },
+              amber: {
+                50: "#fffbeb",
+                100: "#fef3c7",
+                200: "#fde68a",
+                400: "#fbbf24",
+                500: "#f59e0b",
+                600: "#d97706",
+                800: "#92400e",
+                900: "#78350f",
+                950: "#451a03",
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #fafaf9;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #fde68a;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #fbbf24;
+      }
+
+      /* Hide Scrollbar for Slider */
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* Animations */
+      @keyframes blob {
+        0% {
+          transform: translate(0px, 0px) scale(1);
+        }
+        33% {
+          transform: translate(30px, -50px) scale(1.1);
+        }
+        66% {
+          transform: translate(-20px, 20px) scale(0.9);
+        }
+        100% {
+          transform: translate(0px, 0px) scale(1);
+        }
+      }
+      .animate-blob {
+        animation: blob 7s infinite;
+      }
+      .animation-delay-2000 {
+        animation-delay: 2s;
+      }
+      .animation-delay-4000 {
+        animation-delay: 4s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+      .floating {
+        animation: float 4s ease-in-out infinite;
+      }
+
+      @keyframes bounce-slow {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+      .animate-bounce-slow {
+        animation: bounce-slow 2s infinite ease-in-out;
+      }
+
+      @keyframes fade-in-down {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in-down {
+        animation: fade-in-down 0.3s ease-out forwards;
+      }
+
+      @keyframes spin-slow {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .animate-spin-slow {
+        animation: spin-slow 20s linear infinite;
+      }
+
+      /* General Styles */
+      body {
+        background-color: #fafaf9;
+        color: #292524;
+        overflow-x: hidden;
+      }
+      ::selection {
+        background: #fde68a;
+        color: #78350f;
+      }
+
+      .glass-nav {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- Loading Screen -->
+    <div
+      id="loading-screen"
+      class="fixed inset-0 bg-amber-50 flex flex-col items-center justify-center z-[100] transition-opacity duration-1000"
+    >
+      <div class="relative animate-bounce-slow">
+        <div class="text-6xl mb-4">🎂</div>
+        <div
+          class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-2 bg-amber-200/50 rounded-full blur-sm"
+        ></div>
+      </div>
+      <h1 class="font-serif text-3xl text-amber-900 tracking-wider">
+        Gold Bakers
+      </h1>
+      <p
+        class="text-amber-600 uppercase tracking-[0.2em] text-xs mt-2 animate-pulse"
+      >
+        Premium quality Cake at wow price
+      </p>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav
+      class="fixed w-full z-40 top-0 transition-all duration-300 glass-nav border-b border-amber-100"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <!-- Logo -->
+          <a
+            href="#home"
+            class="flex-shrink-0 flex items-center cursor-pointer"
+          >
+            <span
+              class="font-serif text-2xl font-bold text-amber-900 tracking-tight"
+            >
+              GOLD BAKERS<span class="text-amber-500">.</span>
+            </span>
+          </a>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex space-x-8 items-center">
+            <a
+              href="#home"
+              class="text-stone-600 hover:text-amber-600 font-medium text-sm transition-colors uppercase tracking-widest relative group"
+            >
+              Home<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"
+              ></span>
+            </a>
+            <a
+              href="#menu"
+              class="text-stone-600 hover:text-amber-600 font-medium text-sm transition-colors uppercase tracking-widest relative group"
+            >
+              Menu<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"
+              ></span>
+            </a>
+            <a
+              href="#custom-cakes"
+              class="text-stone-600 hover:text-amber-600 font-medium text-sm transition-colors uppercase tracking-widest relative group"
+            >
+              Custom Cakes<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"
+              ></span>
+            </a>
+            <a
+              href="#gallery"
+              class="text-stone-600 hover:text-amber-600 font-medium text-sm transition-colors uppercase tracking-widest relative group"
+            >
+              Gallery<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"
+              ></span>
+            </a>
+            <a
+              href="#reviews"
+              class="text-stone-600 hover:text-amber-600 font-medium text-sm transition-colors uppercase tracking-widest relative group"
+            >
+              Reviews<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"
+              ></span>
+            </a>
+            <a
+              href="#location"
+              class="text-stone-600 hover:text-amber-600 font-medium text-sm transition-colors uppercase tracking-widest relative group"
+            >
+              Visit Us<span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"
+              ></span>
+            </a>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex items-center space-x-4">
+            <button
+              onclick="toggleCart(true)"
+              class="relative p-2 text-stone-600 hover:text-amber-600 transition-colors"
+            >
+              <i class="fa-solid fa-bag-shopping text-xl"></i>
+              <span
+                id="cart-badge"
+                class="hidden absolute top-0 right-0 items-center justify-center px-2 py-1 text-[10px] font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-amber-500 rounded-full"
+                >0</span
+              >
+            </button>
+
+            <button
+              onclick="toggleMobileMenu()"
+              class="md:hidden p-2 text-stone-600 text-xl"
+            >
+              <i id="mobile-menu-icon" class="fa-solid fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden absolute top-20 w-full bg-white border-b border-amber-100 shadow-xl"
+      >
+        <div class="px-4 pt-2 pb-6 space-y-1">
+          <a
+            href="#home"
+            onclick="toggleMobileMenu()"
+            class="block px-3 py-4 text-base font-medium text-stone-700 hover:text-amber-600 hover:bg-amber-50 rounded-lg"
+            >Home</a
+          >
+          <a
+            href="#menu"
+            onclick="toggleMobileMenu()"
+            class="block px-3 py-4 text-base font-medium text-stone-700 hover:text-amber-600 hover:bg-amber-50 rounded-lg"
+            >Menu</a
+          >
+          <a
+            href="#custom-cakes"
+            onclick="toggleMobileMenu()"
+            class="block px-3 py-4 text-base font-medium text-stone-700 hover:text-amber-600 hover:bg-amber-50 rounded-lg"
+            >Custom Cakes</a
+          >
+          <a
+            href="#gallery"
+            onclick="toggleMobileMenu()"
+            class="block px-3 py-4 text-base font-medium text-stone-700 hover:text-amber-600 hover:bg-amber-50 rounded-lg"
+            >Gallery</a
+          >
+          <a
+            href="#reviews"
+            onclick="toggleMobileMenu()"
+            class="block px-3 py-4 text-base font-medium text-stone-700 hover:text-amber-600 hover:bg-amber-50 rounded-lg"
+            >Reviews</a
+          >
+          <a
+            href="#location"
+            onclick="toggleMobileMenu()"
+            class="block px-3 py-4 text-base font-medium text-stone-700 hover:text-amber-600 hover:bg-amber-50 rounded-lg"
+            >Visit Us</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <!-- Hero Section -->
+      <section
+        id="home"
+        class="relative pt-20 pb-16 md:pt-32 md:pb-32 overflow-hidden bg-amber-50/50 min-h-[90vh] flex items-center"
+      >
+        <!-- Background Decorative Elements -->
+        <div
+          class="absolute top-20 left-10 w-64 h-64 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"
+        ></div>
+        <div
+          class="absolute top-40 right-10 w-64 h-64 bg-yellow-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"
+        ></div>
+        <div
+          class="absolute -bottom-8 left-40 w-64 h-64 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-4000"
+        ></div>
+
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full"
+        >
+          <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
+            <div class="w-full lg:w-1/2 text-center lg:text-left pt-12 lg:pt-0">
+              <div
+                class="inline-flex items-center px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm border border-amber-200 mb-6 shadow-sm"
+              >
+                <i class="fa-solid fa-star text-amber-500 mr-2 text-sm"></i>
+                <span class="text-sm font-medium text-amber-900"
+                  >4.8 Stars on Google Reviews (106)</span
+                >
+              </div>
+
+              <h1
+                class="text-5xl md:text-7xl font-serif text-amber-950 leading-tight mb-6"
+              >
+                Premium Quality <br />
+                <span
+                  class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-400"
+                >
+                  Cakes at Wow Price
+                </span>
+              </h1>
+
+              <p
+                class="text-lg text-stone-600 mb-8 max-w-lg mx-auto lg:mx-0 font-medium"
+              >
+                Wholesale Bakery • Chocolate Shop • Cupcake Shop <br />
+                Open 24 hours. Dine-in, Takeaway & Delivery available.
+              </p>
+
+              <div
+                class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+              >
+                <a
+                  href="#menu"
+                  class="w-full sm:w-auto px-8 py-4 bg-amber-900 hover:bg-amber-800 text-white rounded-full font-medium transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-center"
+                >
+                  Order Now
+                </a>
+                <a
+                  href="#custom-cakes"
+                  class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-amber-50 text-amber-900 border border-amber-200 rounded-full font-medium transition-all shadow-sm hover:shadow-md text-center"
+                >
+                  Customize Your Cake
+                </a>
+              </div>
+            </div>
+
+            <div class="w-full lg:w-1/2 relative">
+              <div class="relative w-full max-w-lg mx-auto aspect-square">
+                <div
+                  class="absolute inset-0 bg-gradient-to-tr from-amber-200 to-yellow-100 rounded-full animate-spin-slow"
+                ></div>
+                <img
+                  src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?q=80&w=436&auto=format&fit=crop"
+                  alt="Premium Cake"
+                  class="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] object-cover rounded-full border-4 border-white shadow-2xl z-10"
+                />
+                <div
+                  class="absolute top-10 -left-6 z-20 bg-white p-3 rounded-2xl shadow-xl floating"
+                >
+                  <span class="text-2xl">🍰</span>
+                </div>
+                <div
+                  class="absolute bottom-20 -right-4 z-20 bg-white px-4 py-2 rounded-xl shadow-xl floating animation-delay-2000 flex items-center gap-2"
+                >
+                  <i class="fa-solid fa-leaf text-green-500"></i>
+                  <span class="text-sm font-bold text-stone-800"
+                    >Pure Vegan Options</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section
+        class="py-12 bg-white relative z-20 -mt-8 mx-4 sm:mx-8 lg:mx-auto max-w-6xl rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
+      >
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 px-6">
+          <div class="flex flex-col items-center text-center p-4 group">
+            <div
+              class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:bg-amber-100 transition-all"
+            >
+              <i class="fa-solid fa-clock text-amber-500 text-xl"></i>
+            </div>
+            <h3 class="font-bold text-stone-800 text-sm md:text-base">
+              Open 24 Hours
+            </h3>
+            <p class="text-xs text-stone-500 mt-1">Delivery around the clock</p>
+          </div>
+          <div class="flex flex-col items-center text-center p-4 group">
+            <div
+              class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:bg-amber-100 transition-all"
+            >
+              <i class="fa-solid fa-utensils text-amber-500 text-xl"></i>
+            </div>
+            <h3 class="font-bold text-stone-800 text-sm md:text-base">
+              Dine-in & Delivery
+            </h3>
+            <p class="text-xs text-stone-500 mt-1">
+              Kerbside & Takeaway available
+            </p>
+          </div>
+          <div class="flex flex-col items-center text-center p-4 group">
+            <div
+              class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:bg-amber-100 transition-all"
+            >
+              <i class="fa-solid fa-square-parking text-amber-500 text-xl"></i>
+            </div>
+            <h3 class="font-bold text-stone-800 text-sm md:text-base">
+              Free Parking
+            </h3>
+            <p class="text-xs text-stone-500 mt-1">On-site & Street Parking</p>
+          </div>
+          <div class="flex flex-col items-center text-center p-4 group">
+            <div
+              class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:bg-amber-100 transition-all"
+            >
+              <i class="fa-solid fa-mug-hot text-amber-500 text-xl"></i>
+            </div>
+            <h3 class="font-bold text-stone-800 text-sm md:text-base">
+              Coffee & Breakfast
+            </h3>
+            <p class="text-xs text-stone-500 mt-1">Enjoy at our store</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Menu Section -->
+      <section id="menu" class="py-24 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-serif text-amber-900 mb-4">
+              Our Highlights
+            </h2>
+            <p class="text-stone-600 max-w-2xl mx-auto">
+              Explore our wide range of freshly baked delights and signature
+              cakes.
+            </p>
+          </div>
+
+          <!-- Category Pills -->
+          <div
+            id="category-filters"
+            class="flex flex-wrap justify-center gap-3 mb-12"
+          >
+            <!-- Injected by JS -->
+          </div>
+
+          <!-- Menu Grid -->
+          <div
+            id="menu-grid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            <!-- Injected by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Custom Cake Section -->
+      <section
+        id="custom-cakes"
+        class="py-24 bg-amber-900 text-amber-50 relative overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"
+        ></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="flex flex-col lg:flex-row items-center gap-16">
+            <div class="w-full lg:w-1/2">
+              <h2 class="text-4xl md:text-6xl font-serif mb-6 text-white">
+                Bring Your Dream <br /><span class="text-amber-400"
+                  >Cake to Life</span
+                >
+              </h2>
+              <p class="text-amber-100/80 mb-8 text-lg">
+                Wedding cakes, Anniversary celebrations, Heart shapes, or
+                adorable Bento cakes. Upload your inspiration and let our expert
+                bakers craft magic.
+              </p>
+
+              <ul class="space-y-4 mb-10">
+                <li class="flex items-center text-amber-100">
+                  <i class="fa-solid fa-circle-check text-amber-400 mr-3"></i>
+                  Custom Designs & Characters
+                </li>
+                <li class="flex items-center text-amber-100">
+                  <i class="fa-solid fa-circle-check text-amber-400 mr-3"></i>
+                  Premium Quality at Wow Prices
+                </li>
+                <li class="flex items-center text-amber-100">
+                  <i class="fa-solid fa-circle-check text-amber-400 mr-3"></i>
+                  Consultation via WhatsApp
+                </li>
+              </ul>
+            </div>
+
+            <div
+              class="w-full lg:w-1/2 bg-white rounded-3xl p-8 shadow-2xl text-stone-800"
+            >
+              <h3 class="text-2xl font-serif font-bold mb-6 text-amber-900">
+                Request a Quote
+              </h3>
+              <form id="custom-cake-form" class="space-y-5">
+                <div>
+                  <label class="block text-sm font-medium text-stone-600 mb-2"
+                    >Cake Type</label
+                  >
+                  <select
+                    id="cake-type"
+                    class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-200"
+                  >
+                    <option>Wedding Cake</option>
+                    <option>Birthday Cake</option>
+                    <option>Anniversary Cake</option>
+                    <option>Bento Cake / Mini Cake</option>
+                    <option>Cartoon/Theme Cake</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-stone-600 mb-2"
+                    >Describe Your Vision</label
+                  >
+                  <textarea
+                    id="cake-desc"
+                    rows="3"
+                    class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-200"
+                    placeholder="Colors, theme, message on cake..."
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full py-4 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                >
+                  Get Quote on WhatsApp
+                  <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery Section -->
+      <section id="gallery" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-serif text-amber-900 mb-4">
+              Sweet Creations
+            </h2>
+            <p class="text-stone-600 max-w-2xl mx-auto">
+              A glimpse into our freshly baked, handcrafted masterpieces.
+            </p>
+          </div>
+
+          <div
+            class="columns-2 lg:columns-3 gap-4 sm:gap-6 space-y-4 sm:space-y-6"
+            id="gallery-grid"
+          >
+            <!-- Injected by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section id="reviews" class="py-24 bg-amber-50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-serif text-amber-900 mb-4">
+              Loved by Patna
+            </h2>
+            <div
+              class="flex items-center justify-center gap-2 text-xl font-medium text-stone-600"
+            >
+              4.8 <i class="fa-solid fa-star text-amber-500"></i> rating on
+              Google (106 Reviews)
+            </div>
+          </div>
+
+          <div
+            class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar px-4 sm:px-0"
+            id="reviews-grid"
+          >
+            <!-- Injected by JS -->
+          </div>
+
+          <div class="text-center mt-10">
+            <a
+              href="https://www.google.com/maps/search/Gold+Bakers+CRPF+Camp+Patna"
+              target="_blank"
+              class="inline-flex items-center gap-2 px-8 py-4 bg-white border border-amber-200 text-amber-900 rounded-full font-bold hover:bg-amber-50 transition-colors shadow-sm hover:shadow-md"
+            >
+              Read More on Google
+              <i class="fa-brands fa-google ml-1 text-blue-500"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Map Location Section -->
+      <section id="location" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-serif text-amber-900 mb-4">
+              Visit Us
+            </h2>
+            <p class="text-stone-600 max-w-2xl mx-auto">
+              Drop by for dine-in, takeaway, or kerbside pickup. We are open 24
+              hours!
+            </p>
+          </div>
+
+          <div
+            class="rounded-3xl overflow-hidden shadow-2xl border border-stone-100 bg-stone-50 p-2 sm:p-4"
+          >
+            <iframe
+              width="100%"
+              height="450"
+              style="border: 0; border-radius: 1rem"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.29180245729!2d85.08269157518585!3d25.62843911409931!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed5724e68bde35%3A0x3808c7629285e716!2sGOLD%20BAKERS!5e0!3m2!1sen!2sin!4v1778139498128!5m2!1sen!2sin"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            >
+            </iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="bg-amber-950 text-amber-50/70 pt-20 pb-10 border-t-4 border-amber-500"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          <div class="col-span-1 md:col-span-2">
+            <span
+              class="font-serif text-3xl font-bold text-white tracking-tight mb-6 block"
+            >
+              GOLD BAKERS<span class="text-amber-400">.</span>
+            </span>
+            <p class="mb-6 max-w-sm">
+              Wholesale bakery, Chocolate shop, and Cupcake shop. Premium
+              quality Cake at wow price. Available 24/7 in Patna, Bihar.
+            </p>
+          </div>
+
+          <div>
+            <h4
+              class="text-white font-bold mb-6 uppercase tracking-wider text-sm"
+            >
+              Visit Us
+            </h4>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <i
+                  class="fa-solid fa-location-dot text-amber-400 mr-3 flex-shrink-0 mt-1"
+                ></i>
+                <span
+                  >90ft road, Gold Bakers & Amul store, Ashiyana Digha main
+                  road, near CRPF Camp, corner, Ramnihora path, Patna, Bihar
+                  800024</span
+                >
+              </li>
+              <li class="flex items-center">
+                <i
+                  class="fa-solid fa-phone text-amber-400 mr-3 flex-shrink-0"
+                ></i>
+                <span>+91 88776 69975</span>
+              </li>
+              <li class="flex items-center">
+                <i
+                  class="fa-solid fa-envelope text-amber-400 mr-3 flex-shrink-0"
+                ></i>
+                <span>thegoldbakers@gmail.com</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4
+              class="text-white font-bold mb-6 uppercase tracking-wider text-sm"
+            >
+              Hours
+            </h4>
+            <ul class="space-y-2">
+              <li
+                class="flex justify-between border-b border-amber-900/50 pb-2"
+              >
+                <span>Mon - Sun</span>
+                <span class="text-white font-bold">Open 24 hours</span>
+              </li>
+              <li class="pt-4 text-sm italic text-amber-200/50">
+                *Dine-in, Takeaway & Delivery available.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-amber-900 pt-8 flex flex-col md:flex-row justify-between items-center text-sm gap-4"
+        >
+          <p>
+            &copy; <span id="year"></span> Gold Bakers. All rights reserved.
+          </p>
+          <div class="flex gap-4">
+            <a href="#" class="hover:text-white transition-colors"
+              >Privacy Policy</a
+            >
+            <a href="#" class="hover:text-white transition-colors"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a
+      href="https://wa.me/918877669975"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform z-50 flex items-center justify-center"
+      style="box-shadow: 0 0 20px rgba(34, 197, 94, 0.4)"
+    >
+      <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- Cart Sidebar -->
+    <div
+      id="cart-backdrop"
+      class="fixed inset-0 bg-stone-900/50 backdrop-blur-sm z-50 transition-opacity hidden"
+      onclick="toggleCart(false)"
+    ></div>
+
+    <div
+      id="cart-sidebar"
+      class="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col"
+    >
+      <div
+        class="p-6 border-b border-stone-100 flex justify-between items-center"
+      >
+        <h2
+          class="text-2xl font-serif font-bold text-amber-900 flex items-center gap-2"
+        >
+          <i class="fa-solid fa-bag-shopping"></i> Your Order
+        </h2>
+        <button
+          onclick="toggleCart(false)"
+          class="p-2 text-stone-400 hover:text-stone-800 transition-colors"
+        >
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+
+      <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-6">
+        <!-- Injected by JS -->
+      </div>
+
+      <div
+        id="cart-footer"
+        class="p-6 border-t border-stone-100 bg-stone-50 hidden"
+      >
+        <div class="flex justify-between items-center mb-6">
+          <span class="text-stone-500 font-medium">Subtotal</span>
+          <span id="cart-total" class="text-2xl font-bold text-amber-900"
+            >₹0</span
+          >
+        </div>
+        <button
+          onclick="handleCheckout()"
+          class="w-full py-4 bg-green-500 hover:bg-green-600 text-white rounded-xl font-bold text-lg transition-all shadow-md flex items-center justify-center gap-2"
+        >
+          Checkout via WhatsApp
+        </button>
+        <p class="text-center text-xs text-stone-400 mt-4">
+          Taxes and delivery calculated on WhatsApp
+        </p>
+      </div>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+      // --- DATA ---
+      const MENU_DATA = {
+        Highlights: [
+          {
+            id: "c1",
+            name: "Chocolate Cake",
+            price: 299,
+            img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&q=80",
+            desc: "Pure vegan , Real choco taste 😋",
+          },
+          {
+            id: "c2",
+            name: "Chocolate Fudge Cake",
+            price: 399,
+            img: "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=500&q=80",
+            desc: "A very chocolatey, moist Chocolate Fudge Cake that is similar to chocolate mud cake, but not as dense. Made with both melted chocolate and cocoa, AND topped with chocolate ganache, this one is sure to satisfying your chocolate cravings!",
+          },
+          {
+            id: "c3",
+            name: "Choc Truffle Cakes",
+            price: 399,
+            img: "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=500&q=80",
+            desc: "a chocolate layer cake recipe with dense, moist chocolate cake, silky chocolate truffle frosting and chocolate flakes. Chocolate Truffle Cake will satisfy any chocolate lovers craving... It is dreamy chocolate heaven right there. Try ones at GB GOLD BAKERS. 🤗❤️",
+          },
+          {
+            id: "c4",
+            name: "Wedding Cake",
+            price: 599,
+            img: "https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=500&q=80",
+            desc: "A gorgeous wedding A wedding cake is often the focal point of the reception and is given a prominent location. The tradition of the bride cutting the first cake piece is thought to bring happiness and prosperity.",
+          },
+          {
+            id: "c5",
+            name: "Bento Cake / Mini Cake",
+            price: 299,
+            img: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=500&q=80",
+            desc: "Lunchbox (or bento) cakes are mini cakes originating from South Korea. They are packaged and eaten inside takeout boxes, making them perfect for gifts. Bento cake size is about two-by-four-inch and weighs about 300-350 grams.",
+          },
+        ],
+        "Cupcakes & More": [
+          {
+            id: "cm1",
+            name: "Vanilla Cupcakes",
+            price: 70,
+            img: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=500&q=80",
+            desc: "Beautifully piped vanilla cupcakes in assorted designs.",
+          },
+          {
+            id: "cm2",
+            name: "Fudgy Brownies",
+            price: 80,
+            img: "https://images.unsplash.com/photo-1604693155708-3ce80a373bfa?w=500&q=80",
+            desc: "Melt-in-your-mouth intensely dark chocolate fudge.",
+          },
+          {
+            id: "cm3",
+            name: "Rum Balls",
+            price: 60,
+            img: "https://images.unsplash.com/photo-1605807646983-377bc5a76493?w=500&q=80",
+            desc: "Rich, chocolatey treats perfect for a quick bite.",
+          },
+        ],
+      };
+
+      const REVIEWS = [
+        {
+          id: 1,
+          name: "Ravi Kumar",
+          text: "Amazing Choc Truffle Cake! The quality is literally wow for the price. Best bakery in Rajeev Nagar area.",
+          stars: 5,
+        },
+        {
+          id: 2,
+          name: "Neha Sinha",
+          text: "I love their pure vegan chocolate cake options. The taste is incredibly rich and moist. Highly recommend Gold Bakers!",
+          stars: 5,
+        },
+        {
+          id: 3,
+          name: "Amit Sharma",
+          text: "Ordered a wedding cake from here. The design was beautiful and the delivery was right on time. Great service.",
+          stars: 5,
+        },
+        {
+          id: 4,
+          name: "Pooja Singh",
+          text: "Their Bento cakes are the cutest things ever! Perfect for small celebrations and gifting.",
+          stars: 5,
+        },
+        {
+          id: 5,
+          name: "Vikash",
+          text: "Open 24 hours is a lifesaver for midnight cravings! Their Chocolate Fudge Cake is a must-try.",
+          stars: 4,
+        },
+      ];
+
+      const GALLERY_IMAGES = [
+        "https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=600&q=80",
+        "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=600&q=80",
+        "https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=600&q=80",
+        "https://images.unsplash.com/photo-1562440499-64c9a111f713?w=600&q=80",
+        "https://images.unsplash.com/photo-1588195538328-d604faa06240?w=600&q=80",
+        "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?w=600&q=80",
+      ];
+
+      // --- STATE ---
+      let cart = [];
+      let activeCategory = Object.keys(MENU_DATA)[0];
+      const allItems = Object.values(MENU_DATA).flat();
+
+      // --- INITIALIZATION ---
+      document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+          const loader = document.getElementById("loading-screen");
+          loader.style.opacity = "0";
+          setTimeout(() => (loader.style.display = "none"), 1000);
+        }, 1500);
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        renderCategoryPills();
+        renderMenuGrid();
+        renderGallery();
+        renderReviews();
+        updateCartUI();
+      });
+
+      // --- MENU LOGIC ---
+      function renderCategoryPills() {
+        const container = document.getElementById("category-filters");
+        container.innerHTML = "";
+        Object.keys(MENU_DATA).forEach((category) => {
+          const isActive = category === activeCategory;
+          const btn = document.createElement("button");
+          btn.className = `px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${isActive ? "bg-amber-900 text-white shadow-md" : "bg-white text-stone-600 hover:bg-amber-50 border border-stone-200"}`;
+          btn.textContent = category;
+          btn.onclick = () => {
+            activeCategory = category;
+            renderCategoryPills();
+            renderMenuGrid();
+          };
+          container.appendChild(btn);
+        });
+      }
+
+      function renderMenuGrid() {
+        const container = document.getElementById("menu-grid");
+        container.innerHTML = "";
+        const items = MENU_DATA[activeCategory];
+
+        items.forEach((item) => {
+          container.innerHTML += `
+            <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
+              <div class="relative h-64 overflow-hidden">
+                <img src="${item.img}" alt="${item.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-amber-900 shadow-sm">
+                  ₹${item.price}
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-serif font-bold text-stone-800 mb-2">${item.name}</h3>
+                <p class="text-stone-500 text-sm mb-6 line-clamp-3">${item.desc}</p>
+                <button onclick="addToCart('${item.id}')" class="w-full py-3 bg-amber-50 hover:bg-amber-500 hover:text-white text-amber-700 rounded-xl font-medium transition-colors flex items-center justify-center gap-2">
+                  <i class="fa-solid fa-bag-shopping"></i> Add to Order
+                </button>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      function renderGallery() {
+        const container = document.getElementById("gallery-grid");
+        GALLERY_IMAGES.forEach((src) => {
+          container.innerHTML += `
+            <div class="break-inside-avoid relative rounded-2xl overflow-hidden group mb-4 sm:mb-6 cursor-pointer">
+              <img src="${src}" alt="Gallery item" loading="lazy" class="w-full object-cover rounded-2xl" />
+              <div class="absolute inset-0 bg-amber-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
+                <i class="fa-solid fa-heart text-2xl sm:text-3xl text-white"></i>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      function renderReviews() {
+        const container = document.getElementById("reviews-grid");
+        REVIEWS.forEach((review) => {
+          let starsHTML = "";
+          for (let i = 0; i < review.stars; i++)
+            starsHTML += '<i class="fa-solid fa-star text-amber-400"></i>';
+
+          container.innerHTML += `
+            <div class="flex-none w-[85vw] sm:w-[400px] snap-center bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-shadow relative whitespace-normal">
+              <div class="absolute top-6 right-8 text-amber-100 text-6xl font-serif leading-none">"</div>
+              <div class="flex gap-1 mb-6 relative z-10">${starsHTML}</div>
+              <p class="text-stone-600 mb-6 relative z-10 italic">"${review.text}"</p>
+              <h4 class="font-bold text-amber-900">— ${review.name}</h4>
+            </div>
+          `;
+        });
+      }
+
+      // --- CART LOGIC ---
+      function toggleCart(show) {
+        const sidebar = document.getElementById("cart-sidebar");
+        const backdrop = document.getElementById("cart-backdrop");
+        if (show) {
+          sidebar.classList.remove("translate-x-full");
+          backdrop.classList.remove("hidden");
+        } else {
+          sidebar.classList.add("translate-x-full");
+          backdrop.classList.add("hidden");
+        }
+      }
+
+      function addToCart(id) {
+        const item = allItems.find((i) => i.id === id);
+        if (!item) return;
+
+        const existing = cart.find((i) => i.id === id);
+        if (existing) {
+          existing.qty++;
+        } else {
+          cart.push({ ...item, qty: 1 });
+        }
+        updateCartUI();
+        toggleCart(true);
+      }
+
+      function updateQty(id, delta) {
+        const item = cart.find((i) => i.id === id);
+        if (item) {
+          item.qty += delta;
+          if (item.qty <= 0) {
+            cart = cart.filter((i) => i.id !== id);
+          }
+        }
+        updateCartUI();
+      }
+
+      function updateCartUI() {
+        const container = document.getElementById("cart-items");
+        const footer = document.getElementById("cart-footer");
+        const totalEl = document.getElementById("cart-total");
+        const badge = document.getElementById("cart-badge");
+
+        let total = 0;
+        let count = 0;
+        container.innerHTML = "";
+
+        if (cart.length === 0) {
+          container.innerHTML = `
+            <div class="h-full flex flex-col items-center justify-center text-stone-400 space-y-4 pt-20">
+              <i class="fa-solid fa-bag-shopping text-6xl opacity-20"></i>
+              <p class="text-lg">Your sweet cart is empty</p>
+              <button onclick="toggleCart(false)" class="text-amber-500 font-medium hover:underline">Browse Menu</button>
+            </div>
+          `;
+          footer.classList.add("hidden");
+          badge.classList.add("hidden");
+        } else {
+          cart.forEach((item) => {
+            total += item.price * item.qty;
+            count += item.qty;
+            container.innerHTML += `
+              <div class="flex gap-4 items-center bg-stone-50 p-3 rounded-2xl">
+                <img src="${item.img}" class="w-20 h-20 object-cover rounded-xl shadow-sm" />
+                <div class="flex-1">
+                  <h4 class="font-bold text-stone-800">${item.name}</h4>
+                  <p class="text-amber-600 font-medium text-sm">₹${item.price}</p>
+                  <div class="flex items-center gap-3 mt-2 bg-white w-max rounded-lg border border-stone-200">
+                    <button onclick="updateQty('${item.id}', -1)" class="p-1 px-2 text-stone-500 hover:text-amber-600"><i class="fa-solid fa-minus text-xs"></i></button>
+                    <span class="text-sm font-bold w-4 text-center">${item.qty}</span>
+                    <button onclick="updateQty('${item.id}', 1)" class="p-1 px-2 text-stone-500 hover:text-amber-600"><i class="fa-solid fa-plus text-xs"></i></button>
+                  </div>
+                </div>
+                <div class="font-bold text-amber-900">₹${item.price * item.qty}</div>
+              </div>
+            `;
+          });
+          totalEl.textContent = `₹${total}`;
+          footer.classList.remove("hidden");
+
+          badge.textContent = count;
+          badge.classList.remove("hidden");
+          badge.classList.add("flex");
+        }
+      }
+
+      function handleCheckout() {
+        let total = 0;
+        let text = `Hello Gold Bakers! 🎂 I'd like to place an order:\n\n`;
+
+        cart.forEach((item) => {
+          total += item.price * item.qty;
+          text += `- ${item.qty}x ${item.name} (₹${item.price * item.qty})\n`;
+        });
+
+        text += `\n*Total: ₹${total}*\n\nPlease confirm my order.`;
+        window.open(
+          `https://wa.me/918877669975?text=${encodeURIComponent(text)}`,
+          "_blank",
+        );
+      }
+
+      // --- CUSTOM CAKE FORM ---
+      document
+        .getElementById("custom-cake-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const type = document.getElementById("cake-type").value;
+          const desc = document.getElementById("cake-desc").value;
+
+          let text = `Hi Gold Bakers, I want to discuss a custom cake order.\n\n*Type:* ${type}\n*Vision:* ${desc || "Not specified"}\n\nPlease let me know the process!`;
+          window.open(
+            `https://wa.me/918877669975?text=${encodeURIComponent(text)}`,
+            "_blank",
+          );
+        });
+
+      // --- MOBILE MENU ---
+      function toggleMobileMenu() {
+        const menu = document.getElementById("mobile-menu");
+        const icon = document.getElementById("mobile-menu-icon");
+
+        if (menu.classList.contains("hidden")) {
+          menu.classList.remove("hidden");
+          menu.classList.add("animate-fade-in-down");
+          icon.classList.remove("fa-bars");
+          icon.classList.add("fa-xmark");
+        } else {
+          menu.classList.add("hidden");
+          menu.classList.remove("animate-fade-in-down");
+          icon.classList.remove("fa-xmark");
+          icon.classList.add("fa-bars");
+        }
+      }
+    </script>
+  </body>
+</html>
