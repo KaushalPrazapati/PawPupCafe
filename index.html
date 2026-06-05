@@ -136,17 +136,22 @@
 
       /* Masonry basic setup */
       .masonry-grid {
-        column-count: 1;
-        column-gap: 1.5rem;
+        column-count: 2; /* mobile pe 2 columns */
+        column-gap: 1rem;
       }
-      @media (min-width: 640px) {
+      @media (min-width: 768px) {
         .masonry-grid {
-          column-count: 2;
+          column-count: 3; /* tablet/desktop pe 3 columns */
+          column-gap: 1.5rem;
         }
       }
-      @media (min-width: 1024px) {
-        .masonry-grid {
-          column-count: 3;
+      .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 1rem;
+      }
+      @media (min-width: 768px) {
+        .masonry-item {
+          margin-bottom: 1.5rem;
         }
       }
       .masonry-item {
@@ -2202,6 +2207,13 @@
                 <i class="ph-fill ph-instagram-logo text-xl"></i>
               </a>
               <a
+                href="https://www.facebook.com/people/Pawpup-Pet-Cafe/61557656738954/"
+                target="_blank"
+                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"
+              >
+                <i class="ph-fill ph-facebook-logo text-xl"></i>
+              </a>
+              <a
                 href="mailto:pawpupcafe@gmail.com"
                 class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"
               >
@@ -2290,8 +2302,14 @@
         >
           <p>&copy; 2026 PawPup Cafe. All rights reserved.</p>
           <p>
-            Designed & Developed with
-            <i class="ph-fill ph-heart text-brand-orange mx-1"></i> by KAUSHAL
+            Developed with
+            <i class="ph-fill ph-heart text-brand-orange mx-1"></i> by
+            <a
+              href="https://www.instagram.com/hackerkd/"
+              target="_blank"
+              class="text-white hover:text-brand-orange transition-colors font-medium"
+              >KAUSHAL</a
+            >
           </p>
         </div>
       </div>
@@ -2666,3 +2684,4 @@
     </style>
   </body>
 </html>
+
