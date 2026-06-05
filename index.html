@@ -1,296 +1,325 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth scroll-pt-24">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gold Bakers | Premium quality Cake at wow price</title>
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>PawPup Cafe | Lucknow's First Pet Paradise</title>
+    <meta
+      name="description"
+      content="Where Humans and Hounds Have a Pawsome Time. Lucknow's first dog cafe offering a perfect blend of comfort and fun."
+    />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
-    <!-- FontAwesome for Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-
-    <!-- Tailwind Config for Custom Colors/Fonts -->
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
-            fontFamily: {
-              sans: ["Poppins", "sans-serif"],
-              serif: ["Playfair Display", "serif"],
-            },
             colors: {
-              stone: {
-                50: "#fafaf9",
-                100: "#f5f5f4",
-                200: "#e7e5e4",
-                400: "#a8a29e",
-                500: "#78716c",
-                600: "#57534e",
-                800: "#292524",
-                900: "#1c1917",
+              brand: {
+                orange: "#D97736",
+                light: "#FDFBF7",
+                brown: "#5D4037",
+                dark: "#271714",
+                blue: "#2c3e50",
               },
-              amber: {
-                50: "#fffbeb",
-                100: "#fef3c7",
-                200: "#fde68a",
-                400: "#fbbf24",
-                500: "#f59e0b",
-                600: "#d97706",
-                800: "#92400e",
-                900: "#78350f",
-                950: "#451a03",
-              },
+            },
+            fontFamily: {
+              sans: ["Nunito", "sans-serif"],
+              heading: ["Quicksand", "sans-serif"],
             },
           },
         },
       };
     </script>
 
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
     <style>
-      /* Custom Scrollbar */
+      /* Custom Styles & Overrides */
+      body {
+        background-color: #fdfbf7;
+        overflow-x: hidden;
+        cursor: default;
+      }
+
+      /* Glassmorphism Utilities */
+      .glass {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+      }
+
+      .glass-dark {
+        background: rgba(39, 23, 20, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Ken Burns Hero Effect */
+      .hero-bg {
+        animation: kenburns 20s ease-out infinite alternate;
+      }
+      @keyframes kenburns {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(1.1);
+        }
+      }
+
+      /* Floating Paws Animation */
+      .floating-paw {
+        position: absolute;
+        opacity: 0.1;
+        pointer-events: none;
+        animation: floatup 15s linear infinite;
+      }
+      @keyframes floatup {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.15;
+        }
+        90% {
+          opacity: 0.15;
+        }
+        100% {
+          transform: translateY(-20vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* Loader */
+      #loader {
+        position: fixed;
+        inset: 0;
+        background: #fdfbf7;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.5s ease;
+      }
+      .paw-loader {
+        font-size: 4rem;
+        color: #d97736;
+        animation: pulse 1.5s infinite alternate;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(0.9);
+          opacity: 0.7;
+        }
+        100% {
+          transform: scale(1.1);
+          opacity: 1;
+        }
+      }
+
+      /* Masonry basic setup */
+      .masonry-grid {
+        column-count: 1;
+        column-gap: 1.5rem;
+      }
+      @media (min-width: 640px) {
+        .masonry-grid {
+          column-count: 2;
+        }
+      }
+      @media (min-width: 1024px) {
+        .masonry-grid {
+          column-count: 3;
+        }
+      }
+      .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Gallery Filter Active State */
+      .filter-btn.active {
+        background-color: #d97736;
+        color: white;
+        border-color: #d97736;
+      }
+
+      /* Menu Tab Transition */
+      .menu-content {
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+      }
+
+      /* Hide scrollbar for clean look */
       ::-webkit-scrollbar {
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #fafaf9;
+        background: #f1f1f1;
       }
       ::-webkit-scrollbar-thumb {
-        background: #fde68a;
+        background: #d97736;
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #fbbf24;
+        background: #b8622b;
       }
 
-      /* Hide Scrollbar for Slider */
-      .hide-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .hide-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-
-      /* Animations */
-      @keyframes blob {
-        0% {
-          transform: translate(0px, 0px) scale(1);
-        }
-        33% {
-          transform: translate(30px, -50px) scale(1.1);
-        }
-        66% {
-          transform: translate(-20px, 20px) scale(0.9);
-        }
-        100% {
-          transform: translate(0px, 0px) scale(1);
-        }
-      }
-      .animate-blob {
-        animation: blob 7s infinite;
-      }
-      .animation-delay-2000 {
-        animation-delay: 2s;
-      }
-      .animation-delay-4000 {
-        animation-delay: 4s;
-      }
-
-      @keyframes float {
-        0% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-        100% {
-          transform: translateY(0px);
-        }
-      }
-      .floating {
-        animation: float 4s ease-in-out infinite;
-      }
-
-      @keyframes bounce-slow {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-15px);
-        }
-      }
-      .animate-bounce-slow {
-        animation: bounce-slow 2s infinite ease-in-out;
-      }
-
-      @keyframes fade-in-down {
-        0% {
-          opacity: 0;
-          transform: translateY(-10px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      .animate-fade-in-down {
-        animation: fade-in-down 0.3s ease-out forwards;
-      }
-
-      @keyframes spin-slow {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
-      .animate-spin-slow {
-        animation: spin-slow 20s linear infinite;
-      }
-
-      /* General Styles */
+      /* === Unpaid Watermark (remove after payment) === */
       body {
-        background-color: #fafaf9;
-        color: #292524;
-        overflow-x: hidden;
-      }
-      ::selection {
-        background: #fde68a;
-        color: #78350f;
+        position: relative;
       }
 
-      .glass-nav {
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(12px);
+      body::before {
+        content: "DEMO VERSION – KAUSHAL";
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 9999;
+        font-family: var(--font-body);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(212, 175, 55, 0.4);
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        padding: 6px 14px;
+        border-radius: 40px;
+        letter-spacing: 1px;
+        pointer-events: none; /* so it doesn't block clicks */
+        border-left: 3px solid var(--gold-primary);
+        white-space: nowrap;
+      }
+
+      /* Optional: add a diagonal watermark across the whole page */
+      body::after {
+        content: "KAUSHAL";
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-25deg);
+        font-size: 4rem;
+        font-weight: 800;
+        color: rgba(212, 175, 55, 0.08);
+        white-space: nowrap;
+        pointer-events: none;
+        z-index: 9998;
+        font-family: var(--font-heading);
+        letter-spacing: 8px;
+        text-transform: uppercase;
       }
     </style>
   </head>
-  <body class="antialiased">
+  <body class="text-brand-dark antialiased">
     <!-- Loading Screen -->
-    <div
-      id="loading-screen"
-      class="fixed inset-0 bg-amber-50 flex flex-col items-center justify-center z-[100] transition-opacity duration-1000"
-    >
-      <div class="relative animate-bounce-slow">
-        <div class="text-6xl mb-4">🎂</div>
-        <div
-          class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-2 bg-amber-200/50 rounded-full blur-sm"
-        ></div>
-      </div>
-      <h1 class="font-serif text-3xl text-amber-900 tracking-wider">
-        Gold Bakers
-      </h1>
-      <p
-        class="text-amber-600 uppercase tracking-[0.2em] text-xs mt-2 animate-pulse"
-      >
-        Premium quality Cake at wow price
-      </p>
+    <div id="loader">
+      <i class="ph-fill ph-paw-print paw-loader"></i>
     </div>
 
-    <!-- Navigation Bar -->
-    <nav
-      class="fixed w-full z-40 top-0 transition-all duration-300 glass-nav border-b border-amber-100"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
+    <!-- Floating Background Paws Container -->
+    <div
+      id="paws-container"
+      class="fixed inset-0 pointer-events-none overflow-hidden z-[-1]"
+    ></div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 rounded-full glass shadow-sm transition-all duration-300"
+        id="nav-inner"
+      >
+        <div class="flex justify-between items-center h-20 px-4">
           <!-- Logo -->
-          <a
-            href="#home"
+          <div
             class="flex-shrink-0 flex items-center cursor-pointer"
+            onclick="window.scrollTo(0, 0)"
           >
-            <span
-              class="font-serif text-2xl font-bold text-amber-900 tracking-tight"
+            <div
+              class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md overflow-hidden relative border-2 border-brand-orange"
             >
-              GOLD BAKERS<span class="text-amber-500">.</span>
-            </span>
-          </a>
+              <span
+                class="font-heading font-bold text-xl text-brand-orange leading-none relative z-10"
+                >Paw</span
+              >
+              <i
+                class="ph-fill ph-paw-print text-brand-brown absolute opacity-20 text-3xl"
+              ></i>
+            </div>
+            <span
+              class="ml-3 font-heading font-bold text-2xl tracking-tight text-brand-dark"
+              >PawPup Cafe</span
+            >
+          </div>
 
           <!-- Desktop Menu -->
-          <div class="hidden md:flex space-x-8 items-center">
+          <div class="hidden md:flex space-x-6 lg:space-x-8 items-center">
             <a
-              href="#home"
-              class="text-stone-600 hover:text-amber-600 font-medium text-sm transition-colors uppercase tracking-widest relative group"
+              href="#about"
+              class="text-gray-700 hover:text-brand-orange font-semibold transition-colors"
+              >About Us</a
             >
-              Home<span
-                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"
-              ></span>
-            </a>
             <a
               href="#menu"
-              class="text-stone-600 hover:text-amber-600 font-medium text-sm transition-colors uppercase tracking-widest relative group"
+              class="text-gray-700 hover:text-brand-orange font-semibold transition-colors"
+              >Cafe Menu</a
             >
-              Menu<span
-                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"
-              ></span>
-            </a>
             <a
-              href="#custom-cakes"
-              class="text-stone-600 hover:text-amber-600 font-medium text-sm transition-colors uppercase tracking-widest relative group"
+              href="#spa"
+              class="text-gray-700 hover:text-brand-orange font-semibold transition-colors"
+              >Dog's Spa</a
             >
-              Custom Cakes<span
-                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"
-              ></span>
-            </a>
+            <a
+              href="#pool"
+              class="text-gray-700 hover:text-brand-orange font-semibold transition-colors"
+              >Pool</a
+            >
+            <a
+              href="#playarea"
+              class="text-gray-700 hover:text-brand-orange font-semibold transition-colors"
+              >Play Area</a
+            >
             <a
               href="#gallery"
-              class="text-stone-600 hover:text-amber-600 font-medium text-sm transition-colors uppercase tracking-widest relative group"
+              class="text-gray-700 hover:text-brand-orange font-semibold transition-colors"
+              >Gallery</a
             >
-              Gallery<span
-                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"
-              ></span>
-            </a>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="hidden md:flex">
             <a
-              href="#reviews"
-              class="text-stone-600 hover:text-amber-600 font-medium text-sm transition-colors uppercase tracking-widest relative group"
+              href="#booking"
+              class="bg-brand-orange hover:bg-[#c2652a] text-white px-6 py-2.5 rounded-full font-bold shadow-lg shadow-orange-500/30 transition-all hover:-translate-y-0.5 flex items-center gap-2"
             >
-              Reviews<span
-                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"
-              ></span>
-            </a>
-            <a
-              href="#location"
-              class="text-stone-600 hover:text-amber-600 font-medium text-sm transition-colors uppercase tracking-widest relative group"
-            >
-              Visit Us<span
-                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"
-              ></span>
+              <i class="ph-bold ph-calendar-check"></i> Book Visit
             </a>
           </div>
 
-          <!-- Actions -->
-          <div class="flex items-center space-x-4">
+          <!-- Mobile menu button -->
+          <div class="md:hidden flex items-center">
             <button
-              onclick="toggleCart(true)"
-              class="relative p-2 text-stone-600 hover:text-amber-600 transition-colors"
+              id="mobile-menu-btn"
+              class="text-brand-dark hover:text-brand-orange focus:outline-none p-2"
             >
-              <i class="fa-solid fa-bag-shopping text-xl"></i>
-              <span
-                id="cart-badge"
-                class="hidden absolute top-0 right-0 items-center justify-center px-2 py-1 text-[10px] font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-amber-500 rounded-full"
-                >0</span
-              >
-            </button>
-
-            <button
-              onclick="toggleMobileMenu()"
-              class="md:hidden p-2 text-stone-600 text-xl"
-            >
-              <i id="mobile-menu-icon" class="fa-solid fa-bars"></i>
+              <i class="ph ph-list text-3xl"></i>
             </button>
           </div>
         </div>
@@ -299,894 +328,2341 @@
       <!-- Mobile Menu -->
       <div
         id="mobile-menu"
-        class="hidden md:hidden absolute top-20 w-full bg-white border-b border-amber-100 shadow-xl"
+        class="hidden md:hidden glass mx-4 mt-2 rounded-2xl overflow-hidden shadow-lg transform origin-top transition-all duration-300 opacity-0 scale-y-0"
       >
-        <div class="px-4 pt-2 pb-6 space-y-1">
+        <div class="px-4 pt-2 pb-6 space-y-2">
           <a
-            href="#home"
-            onclick="toggleMobileMenu()"
-            class="block px-3 py-4 text-base font-medium text-stone-700 hover:text-amber-600 hover:bg-amber-50 rounded-lg"
-            >Home</a
+            href="#about"
+            class="block px-3 py-3 rounded-xl text-base font-semibold text-gray-800 hover:bg-white/50 hover:text-brand-orange transition"
+            >About Us</a
           >
           <a
             href="#menu"
-            onclick="toggleMobileMenu()"
-            class="block px-3 py-4 text-base font-medium text-stone-700 hover:text-amber-600 hover:bg-amber-50 rounded-lg"
-            >Menu</a
+            class="block px-3 py-3 rounded-xl text-base font-semibold text-gray-800 hover:bg-white/50 hover:text-brand-orange transition"
+            >Cafe Menu</a
           >
           <a
-            href="#custom-cakes"
-            onclick="toggleMobileMenu()"
-            class="block px-3 py-4 text-base font-medium text-stone-700 hover:text-amber-600 hover:bg-amber-50 rounded-lg"
-            >Custom Cakes</a
+            href="#spa"
+            class="block px-3 py-3 rounded-xl text-base font-semibold text-gray-800 hover:bg-white/50 hover:text-brand-orange transition"
+            >Dog's Spa</a
+          >
+          <a
+            href="#pool"
+            class="block px-3 py-3 rounded-xl text-base font-semibold text-gray-800 hover:bg-white/50 hover:text-brand-orange transition"
+            >Swimming Pool</a
+          >
+          <a
+            href="#playarea"
+            class="block px-3 py-3 rounded-xl text-base font-semibold text-gray-800 hover:bg-white/50 hover:text-brand-orange transition"
+            >Play Area</a
           >
           <a
             href="#gallery"
-            onclick="toggleMobileMenu()"
-            class="block px-3 py-4 text-base font-medium text-stone-700 hover:text-amber-600 hover:bg-amber-50 rounded-lg"
+            class="block px-3 py-3 rounded-xl text-base font-semibold text-gray-800 hover:bg-white/50 hover:text-brand-orange transition"
             >Gallery</a
           >
           <a
-            href="#reviews"
-            onclick="toggleMobileMenu()"
-            class="block px-3 py-4 text-base font-medium text-stone-700 hover:text-amber-600 hover:bg-amber-50 rounded-lg"
-            >Reviews</a
-          >
-          <a
-            href="#location"
-            onclick="toggleMobileMenu()"
-            class="block px-3 py-4 text-base font-medium text-stone-700 hover:text-amber-600 hover:bg-amber-50 rounded-lg"
-            >Visit Us</a
+            href="#booking"
+            class="block mt-4 text-center bg-brand-orange text-white px-3 py-3 rounded-xl font-bold shadow-md"
+            >Book a Visit</a
           >
         </div>
       </div>
     </nav>
 
-    <main>
-      <!-- Hero Section -->
-      <section
-        id="home"
-        class="relative pt-20 pb-16 md:pt-32 md:pb-32 overflow-hidden bg-amber-50/50 min-h-[90vh] flex items-center"
-      >
-        <!-- Background Decorative Elements -->
+    <!-- Hero Section -->
+    <section
+      class="relative min-h-[100svh] pt-32 pb-40 flex items-center justify-center overflow-hidden"
+    >
+      <!-- Background Image with Ken Burns -->
+      <div class="absolute inset-0 z-0 bg-brand-dark">
+        <img
+          src="https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=2574&auto=format&fit=crop"
+          alt="Happy dogs playing"
+          class="w-full h-full object-cover hero-bg opacity-70"
+        />
         <div
-          class="absolute top-20 left-10 w-64 h-64 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"
+          class="absolute inset-0 bg-gradient-to-t from-[#1a110e] via-[#1a110e]/60 to-transparent"
         ></div>
-        <div
-          class="absolute top-40 right-10 w-64 h-64 bg-yellow-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"
-        ></div>
-        <div
-          class="absolute -bottom-8 left-40 w-64 h-64 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-4000"
-        ></div>
+      </div>
 
+      <div
+        class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-16"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
         <div
-          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-dark text-white/90 text-sm font-semibold mb-6 border border-white/20"
         >
-          <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
-            <div class="w-full lg:w-1/2 text-center lg:text-left pt-12 lg:pt-0">
-              <div
-                class="inline-flex items-center px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm border border-amber-200 mb-6 shadow-sm"
-              >
-                <i class="fa-solid fa-star text-amber-500 mr-2 text-sm"></i>
-                <span class="text-sm font-medium text-amber-900"
-                  >4.8 Stars on Google Reviews (106)</span
-                >
-              </div>
-
-              <h1
-                class="text-5xl md:text-7xl font-serif text-amber-950 leading-tight mb-6"
-              >
-                Premium Quality <br />
-                <span
-                  class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-400"
-                >
-                  Cakes at Wow Price
-                </span>
-              </h1>
-
-              <p
-                class="text-lg text-stone-600 mb-8 max-w-lg mx-auto lg:mx-0 font-medium"
-              >
-                Wholesale Bakery • Chocolate Shop • Cupcake Shop <br />
-                Open 24 hours. Dine-in, Takeaway & Delivery available.
-              </p>
-
-              <div
-                class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
-              >
-                <a
-                  href="#menu"
-                  class="w-full sm:w-auto px-8 py-4 bg-amber-900 hover:bg-amber-800 text-white rounded-full font-medium transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-center"
-                >
-                  Order Now
-                </a>
-                <a
-                  href="#custom-cakes"
-                  class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-amber-50 text-amber-900 border border-amber-200 rounded-full font-medium transition-all shadow-sm hover:shadow-md text-center"
-                >
-                  Customize Your Cake
-                </a>
-              </div>
-            </div>
-
-            <div class="w-full lg:w-1/2 relative">
-              <div class="relative w-full max-w-lg mx-auto aspect-square">
-                <div
-                  class="absolute inset-0 bg-gradient-to-tr from-amber-200 to-yellow-100 rounded-full animate-spin-slow"
-                ></div>
-                <img
-                  src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?q=80&w=436&auto=format&fit=crop"
-                  alt="Premium Cake"
-                  class="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] object-cover rounded-full border-4 border-white shadow-2xl z-10"
-                />
-                <div
-                  class="absolute top-10 -left-6 z-20 bg-white p-3 rounded-2xl shadow-xl floating"
-                >
-                  <span class="text-2xl">🍰</span>
-                </div>
-                <div
-                  class="absolute bottom-20 -right-4 z-20 bg-white px-4 py-2 rounded-xl shadow-xl floating animation-delay-2000 flex items-center gap-2"
-                >
-                  <i class="fa-solid fa-leaf text-green-500"></i>
-                  <span class="text-sm font-bold text-stone-800"
-                    >Pure Vegan Options</span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
+          <i class="ph-fill ph-star text-brand-orange"></i> Lucknow's First Pet
+          Cafe
         </div>
-      </section>
+        <h1
+          class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-white mb-6 tracking-tight leading-tight drop-shadow-lg"
+        >
+          Where Humans & Hounds <br />
+          <span class="text-brand-orange relative">
+            Have a Pawsome Time
+            <svg
+              class="absolute w-full h-3 -bottom-2 left-0 text-brand-orange opacity-70"
+              viewBox="0 0 100 10"
+              preserveAspectRatio="none"
+            >
+              <path
+                d="M0 5 Q 50 10 100 5"
+                stroke="currentColor"
+                stroke-width="4"
+                fill="none"
+              />
+            </svg>
+          </span>
+        </h1>
+        <p
+          class="mt-4 text-xl md:text-2xl text-white/90 max-w-3xl mx-auto font-medium mb-10 drop-shadow-md"
+        >
+          Indulge your taste buds while pampering your pup. Coffee, play areas,
+          spas, and a swimming pool—a perfect blend of comfort and fun for both.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a
+            href="#booking"
+            class="bg-brand-orange hover:bg-white hover:text-brand-orange text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl shadow-orange-500/20 transition-all hover:-translate-y-1"
+          >
+            Book Your Table
+          </a>
+          <a
+            href="#menu"
+            class="glass-dark hover:bg-white/20 text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:-translate-y-1 border border-white/30"
+          >
+            Explore Menu
+          </a>
+        </div>
+      </div>
 
-      <!-- Features Section -->
-      <section
-        class="py-12 bg-white relative z-20 -mt-8 mx-4 sm:mx-8 lg:mx-auto max-w-6xl rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
+      <!-- Scroll Down Indicator -->
+      <div
+        class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce"
       >
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 px-6">
-          <div class="flex flex-col items-center text-center p-4 group">
-            <div
-              class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:bg-amber-100 transition-all"
-            >
-              <i class="fa-solid fa-clock text-amber-500 text-xl"></i>
-            </div>
-            <h3 class="font-bold text-stone-800 text-sm md:text-base">
-              Open 24 Hours
-            </h3>
-            <p class="text-xs text-stone-500 mt-1">Delivery around the clock</p>
+        <i class="ph ph-caret-down text-3xl text-white/70"></i>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section
+      class="relative z-20 -mt-16 px-4 max-w-6xl mx-auto"
+      data-aos="fade-up"
+      data-aos-delay="200"
+    >
+      <div
+        class="glass rounded-3xl p-8 shadow-2xl border-white flex flex-wrap justify-around items-center gap-8 text-center bg-white/80"
+      >
+        <div>
+          <div class="text-4xl font-heading font-bold text-brand-orange mb-1">
+            1000+
           </div>
-          <div class="flex flex-col items-center text-center p-4 group">
-            <div
-              class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:bg-amber-100 transition-all"
-            >
-              <i class="fa-solid fa-utensils text-amber-500 text-xl"></i>
-            </div>
-            <h3 class="font-bold text-stone-800 text-sm md:text-base">
-              Dine-in & Delivery
-            </h3>
-            <p class="text-xs text-stone-500 mt-1">
-              Kerbside & Takeaway available
-            </p>
-          </div>
-          <div class="flex flex-col items-center text-center p-4 group">
-            <div
-              class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:bg-amber-100 transition-all"
-            >
-              <i class="fa-solid fa-square-parking text-amber-500 text-xl"></i>
-            </div>
-            <h3 class="font-bold text-stone-800 text-sm md:text-base">
-              Free Parking
-            </h3>
-            <p class="text-xs text-stone-500 mt-1">On-site & Street Parking</p>
-          </div>
-          <div class="flex flex-col items-center text-center p-4 group">
-            <div
-              class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 group-hover:bg-amber-100 transition-all"
-            >
-              <i class="fa-solid fa-mug-hot text-amber-500 text-xl"></i>
-            </div>
-            <h3 class="font-bold text-stone-800 text-sm md:text-base">
-              Coffee & Breakfast
-            </h3>
-            <p class="text-xs text-stone-500 mt-1">Enjoy at our store</p>
+          <div class="text-sm font-bold text-gray-600 uppercase tracking-wider">
+            Happy Pets
           </div>
         </div>
-      </section>
+        <div class="hidden sm:block w-px h-12 bg-gray-300"></div>
+        <div>
+          <div class="text-4xl font-heading font-bold text-brand-orange mb-1">
+            3000+
+          </div>
+          <div class="text-sm font-bold text-gray-600 uppercase tracking-wider">
+            Insta Followers
+          </div>
+        </div>
+        <div class="hidden sm:block w-px h-12 bg-gray-300"></div>
+        <div>
+          <div class="text-4xl font-heading font-bold text-brand-orange mb-1">
+            ∞
+          </div>
+          <div class="text-sm font-bold text-gray-600 uppercase tracking-wider">
+            Wagging Tails
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <!-- Menu Section -->
-      <section id="menu" class="py-24 bg-stone-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-serif text-amber-900 mb-4">
-              Our Highlights
+    <!-- About Us Section -->
+    <section id="about" class="py-24 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div data-aos="fade-right">
+            <h2
+              class="text-brand-orange font-bold tracking-widest uppercase text-sm mb-2"
+            >
+              About Us
             </h2>
-            <p class="text-stone-600 max-w-2xl mx-auto">
-              Explore our wide range of freshly baked delights and signature
-              cakes.
-            </p>
-          </div>
+            <h3
+              class="text-4xl md:text-5xl font-heading font-bold mb-6 text-brand-dark"
+            >
+              Our Services
+            </h3>
 
-          <!-- Category Pills -->
-          <div
-            id="category-filters"
-            class="flex flex-wrap justify-center gap-3 mb-12"
-          >
-            <!-- Injected by JS -->
-          </div>
-
-          <!-- Menu Grid -->
-          <div
-            id="menu-grid"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            <!-- Injected by JS -->
-          </div>
-        </div>
-      </section>
-
-      <!-- Custom Cake Section -->
-      <section
-        id="custom-cakes"
-        class="py-24 bg-amber-900 text-amber-50 relative overflow-hidden"
-      >
-        <div
-          class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"
-        ></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div class="flex flex-col lg:flex-row items-center gap-16">
-            <div class="w-full lg:w-1/2">
-              <h2 class="text-4xl md:text-6xl font-serif mb-6 text-white">
-                Bring Your Dream <br /><span class="text-amber-400"
-                  >Cake to Life</span
+            <ul class="space-y-6 mb-10">
+              <li class="flex items-start">
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-brand-orange mt-1"
                 >
-              </h2>
-              <p class="text-amber-100/80 mb-8 text-lg">
-                Wedding cakes, Anniversary celebrations, Heart shapes, or
-                adorable Bento cakes. Upload your inspiration and let our expert
-                bakers craft magic.
-              </p>
+                  <i class="ph-fill ph-coffee text-xl"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-xl font-bold text-gray-800">Dog Cafe</h4>
+                  <p class="text-gray-600">
+                    Enjoy our relaxing ambiance and delicious menu, highlighted
+                    by special dog-friendly treats available.
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 mt-1"
+                >
+                  <i class="ph-fill ph-drop text-xl"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-xl font-bold text-gray-800">Dog Spa</h4>
+                  <p class="text-gray-600">
+                    Showcase spa services offered, including bathing, grooming,
+                    and pampering packages.
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-600 mt-1"
+                >
+                  <i class="ph-fill ph-waves text-xl"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-xl font-bold text-gray-800">Swimming Pool</h4>
+                  <p class="text-gray-600">
+                    Separate sections for humans and dogs, ensuring safety and
+                    hygiene while making a splash.
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-500 mt-1"
+                >
+                  <i class="ph-fill ph-tennis-ball text-xl"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-xl font-bold text-gray-800">Play Area</h4>
+                  <p class="text-gray-600">
+                    Detailing agility equipment, obstacles, or a simple space
+                    for running and socializing safely.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
 
-              <ul class="space-y-4 mb-10">
-                <li class="flex items-center text-amber-100">
-                  <i class="fa-solid fa-circle-check text-amber-400 mr-3"></i>
-                  Custom Designs & Characters
+          <div class="relative" data-aos="fade-left">
+            <div
+              class="glass bg-white/70 p-10 rounded-[2.5rem] shadow-xl border-white relative z-10"
+            >
+              <h3
+                class="text-2xl font-heading font-bold mb-6 text-brand-dark flex items-center gap-3"
+              >
+                <i class="ph-fill ph-seal-check text-brand-orange text-3xl"></i>
+                Why Choose Us?
+              </h3>
+              <ul class="space-y-4">
+                <li
+                  class="flex items-center gap-3 text-lg text-gray-700 font-medium"
+                >
+                  <i class="ph-bold ph-check-circle text-green-500 text-xl"></i>
+                  Lucknow's First Dog Cafe
                 </li>
-                <li class="flex items-center text-amber-100">
-                  <i class="fa-solid fa-circle-check text-amber-400 mr-3"></i>
-                  Premium Quality at Wow Prices
+                <li
+                  class="flex items-center gap-3 text-lg text-gray-700 font-medium"
+                >
+                  <i class="ph-bold ph-check-circle text-green-500 text-xl"></i>
+                  Safe & Supervised Play Area for Dogs
                 </li>
-                <li class="flex items-center text-amber-100">
-                  <i class="fa-solid fa-circle-check text-amber-400 mr-3"></i>
-                  Consultation via WhatsApp
+                <li
+                  class="flex items-center gap-3 text-lg text-gray-700 font-medium"
+                >
+                  <i class="ph-bold ph-check-circle text-green-500 text-xl"></i>
+                  Relaxing Ambiance with Delicious Food
+                </li>
+                <li
+                  class="flex items-center gap-3 text-lg text-gray-700 font-medium"
+                >
+                  <i class="ph-bold ph-check-circle text-green-500 text-xl"></i>
+                  Pampering Spa Treatments for Dogs
+                </li>
+                <li
+                  class="flex items-center gap-3 text-lg text-gray-700 font-medium"
+                >
+                  <i class="ph-bold ph-check-circle text-green-500 text-xl"></i>
+                  Fun & Refreshing Swimming Pool
                 </li>
               </ul>
             </div>
+            <div
+              class="absolute top-10 -right-10 w-full h-full bg-orange-100 rounded-[2.5rem] -z-10 transform rotate-3"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPANDED TABBED MENU SECTION -->
+    <section id="menu" class="py-24 bg-[#FAF7F2] relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-4xl mx-auto mb-12" data-aos="fade-up">
+          <h2
+            class="text-brand-orange font-bold tracking-widest uppercase text-sm mb-2"
+          >
+            Our Menus
+          </h2>
+          <h3
+            class="text-4xl md:text-5xl font-heading font-bold mb-8 text-brand-dark"
+          >
+            Delights for Humans and Hounds
+          </h3>
+
+          <!-- Menu Toggle Buttons -->
+          <div
+            class="inline-flex bg-white rounded-full p-2 shadow-md border border-gray-100"
+          >
+            <button
+              id="tab-pups"
+              onclick="switchMenu('pups')"
+              class="px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 bg-brand-orange text-white shadow-lg flex items-center gap-2"
+            >
+              <i class="ph-fill ph-bone text-xl"></i> Pups Menu
+            </button>
+            <button
+              id="tab-hoomans"
+              onclick="switchMenu('hoomans')"
+              class="px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 text-gray-600 hover:text-brand-orange flex items-center gap-2"
+            >
+              <i class="ph-fill ph-pizza text-xl"></i> Hooman Menu
+            </button>
+          </div>
+        </div>
+
+        <!-- PUPS MENU CONTENT (Default) -->
+        <div
+          id="menu-pups"
+          class="menu-content block transition-all duration-500 transform scale-100 opacity-100"
+        >
+          <div
+            class="bg-[#DF693C] rounded-[2.5rem] p-4 md:p-12 shadow-2xl relative overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 opacity-10"
+              style="
+                background-image: radial-gradient(#fff 2px, transparent 2px);
+                background-size: 30px 30px;
+              "
+            ></div>
 
             <div
-              class="w-full lg:w-1/2 bg-white rounded-3xl p-8 shadow-2xl text-stone-800"
+              class="bg-white rounded-[2rem] p-6 md:p-12 relative z-10 shadow-inner max-w-4xl mx-auto border-4 border-white/50"
             >
-              <h3 class="text-2xl font-serif font-bold mb-6 text-amber-900">
-                Request a Quote
-              </h3>
-              <form id="custom-cake-form" class="space-y-5">
+              <div class="text-center mb-10">
+                <h3
+                  class="text-4xl md:text-5xl font-heading font-black text-[#5D4037] mb-2"
+                >
+                  PUPPY MEALS MENU
+                </h3>
+                <!-- Decorative icon -->
+                <div
+                  class="w-24 h-24 mx-auto bg-orange-100 rounded-full flex items-center justify-center mt-4"
+                >
+                  <i class="ph-fill ph-dog text-5xl text-brand-orange"></i>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                <div
+                  class="text-center md:text-left flex flex-col md:flex-row items-center md:items-start gap-4 p-4 rounded-2xl hover:bg-orange-50 transition-colors"
+                >
+                  <div
+                    class="w-12 h-12 flex-shrink-0 bg-orange-100 rounded-full flex items-center justify-center text-brand-orange"
+                  >
+                    <i class="ph-fill ph-carrot text-2xl"></i>
+                  </div>
+                  <div>
+                    <div
+                      class="flex items-center justify-center md:justify-start gap-3 mb-1"
+                    >
+                      <h4
+                        class="text-xl font-bold font-heading text-[#5D4037] uppercase"
+                      >
+                        Veggie Snacks
+                      </h4>
+                      <span class="text-brand-orange font-bold">₹ 99</span>
+                    </div>
+                    <p class="text-gray-500 text-sm italic">
+                      (Apples, carrots, cucumbers)
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class="text-center md:text-left flex flex-col md:flex-row items-center md:items-start gap-4 p-4 rounded-2xl hover:bg-orange-50 transition-colors"
+                >
+                  <div
+                    class="w-12 h-12 flex-shrink-0 bg-orange-100 rounded-full flex items-center justify-center text-brand-orange"
+                  >
+                    <i class="ph-fill ph-cookie text-2xl"></i>
+                  </div>
+                  <div>
+                    <div
+                      class="flex items-center justify-center md:justify-start gap-3 mb-1"
+                    >
+                      <h4
+                        class="text-xl font-bold font-heading text-[#5D4037] uppercase"
+                      >
+                        Scooby Snack
+                      </h4>
+                      <span class="text-brand-orange font-bold">₹ 129</span>
+                    </div>
+                    <p class="text-gray-500 text-sm italic">
+                      (Peanutbutter, milk & oats)
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class="text-center md:text-left flex flex-col md:flex-row items-center md:items-start gap-4 p-4 rounded-2xl hover:bg-orange-50 transition-colors"
+                >
+                  <div
+                    class="w-12 h-12 flex-shrink-0 bg-orange-100 rounded-full flex items-center justify-center text-brand-orange"
+                  >
+                    <i class="ph-fill ph-bowl-food text-2xl"></i>
+                  </div>
+                  <div>
+                    <div
+                      class="flex items-center justify-center md:justify-start gap-3 mb-1"
+                    >
+                      <h4
+                        class="text-xl font-bold font-heading text-[#5D4037] uppercase"
+                      >
+                        Loaded Bowl
+                      </h4>
+                      <span class="text-brand-orange font-bold">₹ 199</span>
+                    </div>
+                    <p class="text-gray-500 text-sm italic">
+                      (Sweet potato/paneer/chicken/fish, rice, corn, peas, green
+                      beans, carrots)
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class="text-center md:text-left flex flex-col md:flex-row items-center md:items-start gap-4 p-4 rounded-2xl hover:bg-orange-50 transition-colors"
+                >
+                  <div
+                    class="w-12 h-12 flex-shrink-0 bg-orange-100 rounded-full flex items-center justify-center text-brand-orange"
+                  >
+                    <i class="ph-fill ph-egg text-2xl"></i>
+                  </div>
+                  <div>
+                    <div
+                      class="flex items-center justify-center md:justify-start gap-3 mb-1"
+                    >
+                      <h4
+                        class="text-xl font-bold font-heading text-[#5D4037] uppercase"
+                      >
+                        Dogelicious
+                      </h4>
+                      <span class="text-brand-orange font-bold">₹ 149</span>
+                    </div>
+                    <p class="text-gray-500 text-sm italic">
+                      (Scrambled egg with chicken cubes)
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class="text-center md:text-left flex flex-col md:flex-row items-center md:items-start gap-4 p-4 rounded-2xl hover:bg-orange-50 transition-colors"
+                >
+                  <div
+                    class="w-12 h-12 flex-shrink-0 bg-orange-100 rounded-full flex items-center justify-center text-brand-orange"
+                  >
+                    <i class="ph-fill ph-heart text-2xl"></i>
+                  </div>
+                  <div>
+                    <div
+                      class="flex items-center justify-center md:justify-start gap-3 mb-1"
+                    >
+                      <h4
+                        class="text-xl font-bold font-heading text-[#5D4037] uppercase"
+                      >
+                        Keep It Simple
+                      </h4>
+                      <span class="text-brand-orange font-bold">₹ 129</span>
+                    </div>
+                    <p class="text-gray-500 text-sm italic">
+                      (Boiled chicken/paneer/sweet potato/veggies)
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class="text-center md:text-left flex flex-col md:flex-row items-center md:items-start gap-4 p-4 rounded-2xl hover:bg-orange-50 transition-colors"
+                >
+                  <div
+                    class="w-12 h-12 flex-shrink-0 bg-orange-100 rounded-full flex items-center justify-center text-brand-orange"
+                  >
+                    <i class="ph-fill ph-bone text-2xl"></i>
+                  </div>
+                  <div>
+                    <div
+                      class="flex items-center justify-center md:justify-start gap-3 mb-1"
+                    >
+                      <h4
+                        class="text-xl font-bold font-heading text-[#5D4037] uppercase"
+                      >
+                        Lickalicious
+                      </h4>
+                      <span class="text-brand-orange font-bold">₹ 89</span>
+                    </div>
+                    <p class="text-gray-500 text-sm italic">
+                      (Treat dispenser, chew bones or licky mats, with frozen
+                      peanutbutter/yogurt)
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class="text-center md:text-left flex flex-col md:flex-row items-center md:items-start gap-4 p-4 rounded-2xl hover:bg-orange-50 transition-colors"
+                >
+                  <div
+                    class="w-12 h-12 flex-shrink-0 bg-orange-100 rounded-full flex items-center justify-center text-brand-orange"
+                  >
+                    <i class="ph-fill ph-star text-2xl"></i>
+                  </div>
+                  <div>
+                    <div
+                      class="flex items-center justify-center md:justify-start gap-3 mb-1"
+                    >
+                      <h4
+                        class="text-xl font-bold font-heading text-[#5D4037] uppercase"
+                      >
+                        Bowl Licking Chicken
+                      </h4>
+                      <span class="text-brand-orange font-bold">₹ 159</span>
+                    </div>
+                    <p class="text-gray-500 text-sm italic">
+                      (Chicken thighs, lentils, carrot, sweet potatoes, peas)
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class="text-center md:text-left flex flex-col md:flex-row items-center md:items-start gap-4 p-4 rounded-2xl hover:bg-orange-50 transition-colors"
+                >
+                  <div
+                    class="w-12 h-12 flex-shrink-0 bg-orange-100 rounded-full flex items-center justify-center text-brand-orange"
+                  >
+                    <i class="ph-fill ph-drop text-2xl"></i>
+                  </div>
+                  <div>
+                    <div
+                      class="flex items-center justify-center md:justify-start gap-3 mb-1"
+                    >
+                      <h4
+                        class="text-xl font-bold font-heading text-[#5D4037] uppercase"
+                      >
+                        Yogurt Bowl
+                      </h4>
+                      <span class="text-brand-orange font-bold">₹ 99</span>
+                    </div>
+                    <p class="text-gray-500 text-sm italic">
+                      (Yogurt, rice, peas, carrots)
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="mt-8 bg-orange-50 border-2 border-dashed border-orange-200 p-6 rounded-2xl text-center"
+              >
+                <h4
+                  class="text-2xl font-bold font-heading text-brand-orange mb-2 uppercase tracking-wide"
+                >
+                  Customise With Lov3
+                  <i class="ph-fill ph-heart text-red-500"></i>
+                </h4>
+                <p class="text-gray-600 font-medium">
+                  Customise your pup's bowl with what they love!
+                </p>
+                <span class="text-sm text-gray-400 italic"
+                  >(Charged as per actuals)</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOOMANS MENU CONTENT (Hidden by default) -->
+        <div
+          id="menu-hoomans"
+          class="menu-content hidden opacity-0 transform scale-95"
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Column 1: Starters & Burgers -->
+            <div class="space-y-8">
+              <div
+                class="bg-white rounded-[2rem] p-8 shadow-lg border border-gray-100"
+              >
+                <h3
+                  class="text-2xl font-heading font-bold text-brand-dark mb-6 border-b border-gray-100 pb-3 flex items-center gap-2"
+                >
+                  <i class="ph-fill ph-fries text-brand-orange"></i> Appetizers
+                  & Sides
+                </h3>
+                <ul class="space-y-4">
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div>
+                      <div class="font-bold text-gray-800">
+                        Crispy Fries (Salted/Peri)
+                      </div>
+                    </div>
+                    <div class="font-bold text-brand-orange">₹149</div>
+                  </li>
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div>
+                      <div class="font-bold text-gray-800">
+                        Cheese Loaded Nachos
+                      </div>
+                      <div class="text-xs text-gray-500 mt-1">With salsa</div>
+                    </div>
+                    <div class="font-bold text-brand-orange">₹179</div>
+                  </li>
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div>
+                      <div class="font-bold text-gray-800">Bruschetta</div>
+                    </div>
+                    <div class="font-bold text-brand-orange">₹249</div>
+                  </li>
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div>
+                      <div
+                        class="font-bold text-gray-800 text-red-600 flex items-center gap-1"
+                      >
+                        <i class="ph-fill ph-circle text-[8px]"></i> Chicken
+                        Popcorn
+                      </div>
+                    </div>
+                    <div class="font-bold text-brand-orange">₹229</div>
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="bg-white rounded-[2rem] p-8 shadow-lg border border-gray-100"
+              >
+                <h3
+                  class="text-2xl font-heading font-bold text-brand-dark mb-6 border-b border-gray-100 pb-3 flex items-center gap-2"
+                >
+                  <i class="ph-fill ph-hamburger text-brand-orange"></i> Burgers
+                  & Sandwiches
+                </h3>
+                <ul class="space-y-4">
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div class="font-bold text-gray-800">Aloo Patty Burger</div>
+                    <div class="font-bold text-brand-orange">₹169</div>
+                  </li>
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div class="font-bold text-gray-800">
+                      Crispy Cottage Cheese Burger
+                    </div>
+                    <div class="font-bold text-brand-orange">₹199</div>
+                  </li>
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div
+                      class="font-bold text-gray-800 text-red-600 flex items-center gap-1"
+                    >
+                      <i class="ph-fill ph-circle text-[8px]"></i> Crispy
+                      Chicken Burger
+                    </div>
+                    <div class="font-bold text-brand-orange">₹199</div>
+                  </li>
+                  <li class="flex justify-between items-start">
+                    <div class="font-bold text-gray-800">Coleslaw Sandwich</div>
+                    <div class="font-bold text-brand-orange">₹219</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Column 2: Mains -->
+            <div class="space-y-8">
+              <div
+                class="bg-white rounded-[2rem] p-8 shadow-lg border border-gray-100"
+              >
+                <h3
+                  class="text-2xl font-heading font-bold text-brand-dark mb-6 border-b border-gray-100 pb-3 flex items-center gap-2"
+                >
+                  <i class="ph-fill ph-pizza text-brand-orange"></i> Wood-Fired
+                  Pizzas
+                </h3>
+                <ul class="space-y-4">
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div>
+                      <div class="font-bold text-gray-800">Margherita</div>
+                      <div class="text-xs text-gray-500 mt-1">
+                        Classic cheese & basil
+                      </div>
+                    </div>
+                    <div class="font-bold text-brand-orange">₹219</div>
+                  </li>
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div>
+                      <div class="font-bold text-gray-800">Veggie Overload</div>
+                    </div>
+                    <div class="font-bold text-brand-orange">₹249</div>
+                  </li>
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div>
+                      <div class="font-bold text-gray-800">Farmhouse</div>
+                    </div>
+                    <div class="font-bold text-brand-orange">₹279</div>
+                  </li>
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div>
+                      <div
+                        class="font-bold text-gray-800 text-red-600 flex items-center gap-1"
+                      >
+                        <i class="ph-fill ph-circle text-[8px]"></i> Chicken
+                        Overload
+                      </div>
+                    </div>
+                    <div class="font-bold text-brand-orange">₹399</div>
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="bg-white rounded-[2rem] p-8 shadow-lg border border-gray-100"
+              >
+                <h3
+                  class="text-2xl font-heading font-bold text-brand-dark mb-6 border-b border-gray-100 pb-3 flex items-center gap-2"
+                >
+                  <i class="ph-fill ph-cooking-pot text-brand-orange"></i> Pasta
+                  & Bowls
+                </h3>
+                <ul class="space-y-4">
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div>
+                      <div class="font-bold text-gray-800">Alfredo Pasta</div>
+                      <div class="text-xs text-gray-500 mt-1">
+                        Rich creamy cheese sauce
+                      </div>
+                    </div>
+                    <div class="font-bold text-brand-orange">₹299</div>
+                  </li>
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div>
+                      <div class="font-bold text-gray-800">Pasta Arrabiata</div>
+                      <div class="text-xs text-gray-500 mt-1">
+                        Spicy tomato sauce
+                      </div>
+                    </div>
+                    <div class="font-bold text-brand-orange">₹289</div>
+                  </li>
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div>
+                      <div class="font-bold text-gray-800">
+                        Aglio Olio Spaghetti
+                      </div>
+                    </div>
+                    <div class="font-bold text-brand-orange">₹299</div>
+                  </li>
+                  <li class="flex justify-between items-start">
+                    <div>
+                      <div class="font-bold text-gray-800">Hakka Noodles</div>
+                    </div>
+                    <div class="font-bold text-brand-orange">₹229</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Column 3: Beverages & Desserts -->
+            <div class="space-y-8">
+              <div
+                class="bg-white rounded-[2rem] p-8 shadow-lg border border-gray-100"
+              >
+                <h3
+                  class="text-2xl font-heading font-bold text-brand-dark mb-6 border-b border-gray-100 pb-3 flex items-center gap-2"
+                >
+                  <i class="ph-fill ph-coffee text-brand-orange"></i> Cafe &
+                  More
+                </h3>
+                <ul class="space-y-4">
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div class="font-bold text-gray-800">Cappuccino</div>
+                    <div class="font-bold text-brand-orange">₹199</div>
+                  </li>
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div class="font-bold text-gray-800">
+                      Hazelnut Cappuccino
+                    </div>
+                    <div class="font-bold text-brand-orange">₹250</div>
+                  </li>
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div class="font-bold text-gray-800">Iced Mocha</div>
+                    <div class="font-bold text-brand-orange">₹175</div>
+                  </li>
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div class="font-bold text-gray-800">
+                      Ferrero Rocher Smoothie
+                    </div>
+                    <div class="font-bold text-brand-orange">₹299</div>
+                  </li>
+                  <li class="flex justify-between items-start">
+                    <div class="font-bold text-gray-800">Virgin Mojito</div>
+                    <div class="font-bold text-brand-orange">₹179</div>
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="bg-white rounded-[2rem] p-8 shadow-lg border border-gray-100"
+              >
+                <h3
+                  class="text-2xl font-heading font-bold text-brand-dark mb-6 border-b border-gray-100 pb-3 flex items-center gap-2"
+                >
+                  <i class="ph-fill ph-ice-cream text-brand-orange"></i>
+                  Desserts
+                </h3>
+                <ul class="space-y-4">
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div class="font-bold text-gray-800">Brownie</div>
+                    <div class="font-bold text-brand-orange">₹140</div>
+                  </li>
+                  <li
+                    class="flex justify-between items-start border-b border-gray-50 pb-2"
+                  >
+                    <div class="font-bold text-gray-800">Brownie Sundae</div>
+                    <div class="font-bold text-brand-orange">₹199</div>
+                  </li>
+                  <li class="flex justify-between items-start">
+                    <div class="font-bold text-gray-800">
+                      Ice-Cream (Vanilla/Choc)
+                    </div>
+                    <div class="font-bold text-brand-orange">₹99</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOG'S SPA Section -->
+    <section
+      id="spa"
+      class="py-24 bg-brand-blue text-white relative overflow-hidden"
+    >
+      <i
+        class="ph-fill ph-paw-print absolute -right-20 top-20 text-[30rem] text-white/5 rotate-12 pointer-events-none"
+      ></i>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          <div class="lg:col-span-7" data-aos="fade-right">
+            <h2
+              class="text-blue-300 font-bold tracking-widest uppercase text-sm mb-2"
+            >
+              Dog's Spa
+            </h2>
+            <h3
+              class="text-4xl md:text-5xl font-heading font-bold mb-6 text-white leading-tight"
+            >
+              Unleash the Inner Pampered Pup
+            </h3>
+
+            <p class="text-blue-100 text-lg mb-10 leading-relaxed font-medium">
+              At PawPup, we believe your furry friend deserves a little luxury.
+              That's why we offer a full-service dog spa within our cafe,
+              allowing your pup to experience top-notch pampering while you
+              enjoy a relaxing break.
+            </p>
+
+            <h4 class="text-2xl font-bold mb-4 text-brand-orange">
+              More Than Just a Bath
+            </h4>
+            <p class="text-blue-100 mb-6">
+              Our experienced and caring dog groomers go beyond a simple wash.
+              We offer a variety of spa services tailored to your dog's specific
+              needs and breed. Here's what you can expect:
+            </p>
+
+            <ul class="space-y-5 mb-10">
+              <li class="flex items-start gap-3">
+                <i
+                  class="ph-bold ph-sparkle text-brand-orange mt-1 text-xl"
+                ></i>
                 <div>
-                  <label class="block text-sm font-medium text-stone-600 mb-2"
-                    >Cake Type</label
+                  <strong class="text-white">Deep Cleaning Baths:</strong>
+                  <span class="text-blue-100 ml-1"
+                    >We use gentle, veterinarian-approved shampoos and
+                    conditioners to leave your dog's fur squeaky clean and
+                    smelling fresh.</span
+                  >
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i
+                  class="ph-bold ph-scissors text-brand-orange mt-1 text-xl"
+                ></i>
+                <div>
+                  <strong class="text-white">Breed-Specific Grooming:</strong>
+                  <span class="text-blue-100 ml-1"
+                    >Our groomers are familiar with different coat types and are
+                    skilled in providing haircuts and styles tailored to your
+                    dog's breed.</span
+                  >
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i
+                  class="ph-bold ph-paw-print text-brand-orange mt-1 text-xl"
+                ></i>
+                <div>
+                  <strong class="text-white"
+                    >Nail Trimming & Paw Pad Care:</strong
+                  >
+                  <span class="text-blue-100 ml-1"
+                    >We'll safely trim your dog's nails to prevent discomfort.
+                    We also provide paw pad treatments to keep them soft and
+                    healthy.</span
+                  >
+                </div>
+              </li>
+            </ul>
+
+            <div
+              class="bg-white/10 p-6 rounded-2xl border border-white/20 backdrop-blur-sm"
+            >
+              <h4 class="text-xl font-bold mb-4 text-brand-orange">
+                Safety & Comfort are Our Priority
+              </h4>
+              <ul class="space-y-3">
+                <li class="flex items-center gap-3 text-blue-50">
+                  <i class="ph-fill ph-check-circle text-green-400"></i> Calm
+                  and comfortable environment designed for dogs.
+                </li>
+                <li class="flex items-center gap-3 text-blue-50">
+                  <i class="ph-fill ph-check-circle text-green-400"></i> Use of
+                  only gentle and pet-safe products.
+                </li>
+                <li class="flex items-center gap-3 text-blue-50">
+                  <i class="ph-fill ph-check-circle text-green-400"></i>
+                  Experienced groomers trained to handle all sizes &
+                  temperaments.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 grid gap-6" data-aos="fade-left">
+            <img
+              src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=800&auto=format&fit=crop"
+              class="w-full h-64 object-cover rounded-[2rem] shadow-2xl border-4 border-white/10"
+              alt="Dog getting bathed"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=800&auto=format&fit=crop"
+              class="w-full h-64 object-cover rounded-[2rem] shadow-2xl border-4 border-white/10"
+              alt="Dog grooming"
+            />
+            <div
+              class="bg-brand-orange rounded-[2rem] p-8 text-center flex flex-col justify-center shadow-2xl"
+            >
+              <i class="ph-fill ph-calendar-plus text-5xl mb-4 text-white"></i>
+              <h4 class="text-2xl font-bold text-white mb-2">
+                Book a Spa Session
+              </h4>
+              <p class="text-white/80 mb-6">
+                Give your dog the luxury they deserve.
+              </p>
+              <a
+                href="#booking"
+                onclick="
+                  document.getElementById('serviceType').value =
+                    'Dog Spa / Grooming'
+                "
+                class="bg-white text-brand-orange font-bold py-3 px-6 rounded-full hover:bg-gray-100 transition-colors inline-block"
+                >Book Now</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SWIMMING POOL Section -->
+    <section id="pool" class="py-24 bg-cyan-50 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <!-- Images Side -->
+          <div class="grid grid-cols-2 gap-4" data-aos="fade-right">
+            <img
+              src="https://images.unsplash.com/photo-1541280910158-c4e14f9c94a3?q=80&w=600&auto=format&fit=crop"
+              class="w-full h-64 object-cover rounded-[2rem] shadow-lg"
+              alt="Dog in pool"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1601758003122-53c40e686a19?q=80&w=600&auto=format&fit=crop"
+              class="w-full h-64 object-cover rounded-[2rem] shadow-lg mt-8"
+              alt="Owner and dog in pool"
+            />
+            <div
+              class="col-span-2 bg-cyan-600 rounded-[2rem] p-6 text-white text-center shadow-lg mt-2"
+            >
+              <i class="ph-fill ph-waves text-4xl mb-2"></i>
+              <h4 class="font-bold text-lg">Dive into Fun Today!</h4>
+              <p class="text-sm text-cyan-100 mt-1">
+                Contact us to learn more about our pool schedule. Let's make a
+                splash together!
+              </p>
+            </div>
+          </div>
+
+          <!-- Text Side -->
+          <div data-aos="fade-left">
+            <h2
+              class="text-cyan-600 font-bold tracking-widest uppercase text-sm mb-2"
+            >
+              Swimming Pool
+            </h2>
+            <h3
+              class="text-3xl md:text-4xl font-heading font-bold mb-6 text-gray-800 leading-tight"
+            >
+              Making a Splash Together: About Our Unique Human & Dog Swimming
+              Pool
+            </h3>
+
+            <p class="text-gray-600 mb-8 font-medium leading-relaxed">
+              At <strong class="text-brand-orange">PawPup</strong>, we believe
+              in creating unforgettable experiences for both humans and their
+              canine companions. That's why we're proud to offer Lucknow's first
+              dog cafe with a one-of-a-kind swimming pool designed for fun and
+              refreshment for you and your furry friend!
+            </p>
+
+            <div class="space-y-8">
+              <div>
+                <h4
+                  class="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2"
+                >
+                  <i class="ph-fill ph-drop text-cyan-500"></i> A Pool Paradise
+                  for All:
+                </h4>
+                <p class="text-gray-600 pl-8">
+                  Take a refreshing dip in our sparkling human pool, perfect for
+                  cooling off on a hot day.
+                </p>
+              </div>
+
+              <div>
+                <h4
+                  class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2"
+                >
+                  <i class="ph-fill ph-lifebuoy text-cyan-500"></i> Unleashing
+                  the Fun for Your Pup:
+                </h4>
+                <p class="text-gray-600 pl-8 mb-3">
+                  Your dog will love splashing around in the dedicated dog pool.
+                  Here's what makes it special:
+                </p>
+                <ul class="space-y-3 pl-8">
+                  <li class="flex items-start gap-2">
+                    <i class="ph-bold ph-check text-cyan-600 mt-1"></i>
+                    <span class="text-gray-600"
+                      ><strong>Safe and Spacious:</strong> The dog pool is
+                      designed with a gentle entry ramp and a shallow depth,
+                      ideal for all dog sizes and swimming abilities.</span
+                    >
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i class="ph-bold ph-check text-cyan-600 mt-1"></i>
+                    <span class="text-gray-600"
+                      ><strong>Clean and Healthy:</strong> The dog pool is
+                      rigorously maintained with a separate filtration system,
+                      ensuring clean and healthy water for your furry
+                      friend.</span
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="bg-white p-6 rounded-2xl shadow-sm border border-cyan-100"
+              >
+                <h4
+                  class="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2"
+                >
+                  <i class="ph-fill ph-heart text-brand-orange"></i> The Perfect
+                  Bonding Experience:
+                </h4>
+                <p class="text-gray-600">
+                  Our human-dog swimming pool offers a unique opportunity to
+                  create lasting memories with your pup. Imagine the joy of
+                  splashing around together, fetching water toys, or simply
+                  enjoying the refreshing water on a hot day. It's the perfect
+                  way to cool down, exercise, and bond with your furry best
+                  friend.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAY AREA Section -->
+    <section
+      id="playarea"
+      class="py-24 bg-[#153448] text-white relative overflow-hidden"
+    >
+      <i
+        class="ph-fill ph-tennis-ball absolute left-10 bottom-10 text-[20rem] text-white/5 -rotate-12 pointer-events-none"
+      ></i>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <!-- Text Side -->
+          <div class="order-2 lg:order-1" data-aos="fade-right">
+            <h2
+              class="text-[#8FB3C5] font-bold tracking-widest uppercase text-sm mb-2"
+            >
+              Play Area
+            </h2>
+            <h3
+              class="text-3xl md:text-4xl font-heading font-bold mb-6 text-white leading-tight"
+            >
+              Unleash the Fun: All About Our Pawsome Play Area!
+            </h3>
+
+            <p class="text-blue-50 mb-8 font-medium leading-relaxed">
+              At <strong class="text-brand-orange">PawPup</strong>, we
+              understand the importance of playtime for our furry patrons.
+              That's why we've created a dedicated dog play area that's a
+              wonderland of fun and socialization!
+            </p>
+
+            <div class="space-y-8">
+              <!-- Paradise for Playful Pups -->
+              <div>
+                <h4
+                  class="text-xl font-bold text-brand-orange mb-4 border-b border-white/10 pb-2"
+                >
+                  A Paradise for Playful Pups:
+                </h4>
+                <ul class="space-y-4">
+                  <li class="flex items-start gap-3">
+                    <i
+                      class="ph-fill ph-shield-check text-[#8FB3C5] mt-1 text-xl"
+                    ></i>
+                    <div>
+                      <strong class="text-white block mb-1"
+                        >Spacious and Safe:</strong
+                      >
+                      <span class="text-blue-100/80 text-sm block"
+                        >Our play area is designed to be both spacious and
+                        secure, allowing dogs of all sizes to run, jump, and
+                        play freely.</span
+                      >
+                    </div>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <i
+                      class="ph-fill ph-baseball text-[#8FB3C5] mt-1 text-xl"
+                    ></i>
+                    <div>
+                      <strong class="text-white block mb-2"
+                        >Variety of Playful Activities:</strong
+                      >
+                      <span class="text-blue-100/80 text-sm block mb-2"
+                        >We offer a wide selection of stimulating toys to keep
+                        your pup entertained. This includes:</span
+                      >
+                      <ul
+                        class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-blue-50/70 ml-2 border-l-2 border-[#8FB3C5]/30 pl-3"
+                      >
+                        <li>
+                          <strong class="text-white/90"
+                            >Interactive Toys:</strong
+                          >
+                          Fetch toys, tug-of-war ropes, squeaky toys, to keep
+                          their minds and bodies active.
+                        </li>
+                        <li>
+                          <strong class="text-white/90"
+                            >Agility Equipment:</strong
+                          >
+                          Tunnels, ramps, weave poles, and jumps to provide a
+                          fun challenge and encourage exercise.
+                        </li>
+                        <li>
+                          <strong class="text-white/90">Play Pools:</strong> A
+                          shallow pool for splashing fun on hot days.
+                        </li>
+                        <li>
+                          <strong class="text-white/90"
+                            >Socialization Zone:</strong
+                          >
+                          A designated area for friendly pups to meet and play
+                          with new canine companions.
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Supervised Fun -->
+                <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
+                  <h4 class="text-lg font-bold text-brand-orange mb-3">
+                    Supervised Fun for Peace of Mind:
+                  </h4>
+                  <ul class="space-y-3 text-sm">
+                    <li>
+                      <strong class="text-white">Trained Staff:</strong> Our
+                      staff is trained to monitor playtime, ensuring safety and
+                      fair play for all dogs.
+                    </li>
+                    <li>
+                      <strong class="text-white">Clean & Hygienic:</strong> Our
+                      play area is regularly cleaned and disinfected to maintain
+                      a healthy environment for your pup.
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- More Than Just Fun -->
+                <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
+                  <h4 class="text-lg font-bold text-brand-orange mb-3">
+                    More Than Just Fun:
+                  </h4>
+                  <ul class="space-y-3 text-sm">
+                    <li>
+                      <strong class="text-white"
+                        >Exercise & Stimulation:</strong
+                      >
+                      Playtime promotes physical activity and mental
+                      stimulation.
+                    </li>
+                    <li>
+                      <strong class="text-white"
+                        >Socialization Benefits:</strong
+                      >
+                      Playing with other dogs helps your pup develop social
+                      skills.
+                    </li>
+                    <li>
+                      <strong class="text-white">Stress Relief:</strong> A good
+                      play session helps relieve boredom and stress.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Let the Fun Begin -->
+              <div class="pt-4">
+                <h4 class="text-2xl font-heading font-bold text-white mb-2">
+                  Let the Fun Begin!
+                </h4>
+                <p class="text-blue-100/90 mb-6">
+                  Bring your dog to PawPup and let them loose in our pawsome
+                  play area. We guarantee a tail-wagging good time for your pup
+                  and a relaxing break for you!
+                </p>
+                <a
+                  href="#booking"
+                  onclick="
+                    document.getElementById('serviceType').value = 'Play Area'
+                  "
+                  class="bg-brand-orange text-white font-bold py-3 px-8 rounded-full hover:bg-[#c2652a] shadow-lg shadow-orange-500/20 transition-all inline-block hover:-translate-y-1"
+                  >Book Playtime</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Images Side -->
+          <div class="order-1 lg:order-2 grid gap-6" data-aos="fade-left">
+            <img
+              src="https://images.unsplash.com/photo-1605638680108-9ce09ae21b18?q=80&w=800&auto=format&fit=crop"
+              class="w-full h-56 object-cover rounded-[2rem] shadow-2xl border-4 border-white/5"
+              alt="Dog running in play area"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=800&auto=format&fit=crop"
+              class="w-full h-56 object-cover rounded-[2rem] shadow-2xl border-4 border-white/5"
+              alt="Dogs playing together"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1537151608804-ea2f1fa3dfc5?q=80&w=800&auto=format&fit=crop"
+              class="w-full h-56 object-cover rounded-[2rem] shadow-2xl border-4 border-white/5"
+              alt="Owner and dog playing"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-24 bg-white relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="flex flex-col md:flex-row justify-between items-end mb-8 gap-6"
+        >
+          <div data-aos="fade-right">
+            <h2
+              class="text-brand-orange font-bold tracking-widest uppercase text-sm mb-2"
+            >
+              Our Space
+            </h2>
+            <h3
+              class="text-4xl md:text-5xl font-heading font-bold text-brand-dark"
+            >
+              The Full Experience
+            </h3>
+          </div>
+          <a
+            href="https://instagram.com/pawpup.pet.cafe"
+            target="_blank"
+            class="hidden md:flex items-center gap-2 text-gray-600 hover:text-pink-600 transition-colors font-bold"
+            data-aos="fade-left"
+          >
+            <i class="ph-bold ph-instagram-logo text-2xl"></i> @pawpup.pet.cafe
+          </a>
+        </div>
+
+        <!-- Gallery Filters -->
+        <div class="flex flex-wrap gap-3 mb-10" data-aos="fade-up">
+          <button
+            class="filter-btn active px-6 py-2 rounded-full border border-gray-200 font-bold text-sm text-gray-600 hover:border-brand-orange transition-colors"
+            data-filter="all"
+          >
+            All
+          </button>
+          <button
+            class="filter-btn px-6 py-2 rounded-full border border-gray-200 font-bold text-sm text-gray-600 hover:border-brand-orange transition-colors"
+            data-filter="interior"
+          >
+            Interior & Exterior
+          </button>
+          <button
+            class="filter-btn px-6 py-2 rounded-full border border-gray-200 font-bold text-sm text-gray-600 hover:border-brand-orange transition-colors"
+            data-filter="food"
+          >
+            Food & Drinks
+          </button>
+          <button
+            class="filter-btn px-6 py-2 rounded-full border border-gray-200 font-bold text-sm text-gray-600 hover:border-brand-orange transition-colors"
+            data-filter="pups"
+          >
+            Happy Pups
+          </button>
+          <button
+            class="filter-btn px-6 py-2 rounded-full border border-gray-200 font-bold text-sm text-gray-600 hover:border-brand-orange transition-colors"
+            data-filter="spa"
+          >
+            Spa & Pool
+          </button>
+        </div>
+
+        <!-- Masonry Grid -->
+        <div class="masonry-grid" id="gallery-grid" data-aos="fade-up">
+          <!-- Interior -->
+          <div
+            class="masonry-item gallery-item group relative rounded-2xl overflow-hidden"
+            data-category="interior"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800&auto=format&fit=crop"
+              alt="Cafe Interior Seating"
+              class="w-full h-auto transition-transform duration-700 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white"
+            >
+              <i class="ph-bold ph-arrows-out text-3xl mb-2"></i>
+              <span class="font-bold tracking-wider uppercase text-xs"
+                >View</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="masonry-item gallery-item group relative rounded-2xl overflow-hidden"
+            data-category="interior"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop"
+              alt="Cozy Cafe Corner"
+              class="w-full h-auto transition-transform duration-700 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white"
+            >
+              <i class="ph-bold ph-arrows-out text-3xl mb-2"></i>
+              <span class="font-bold tracking-wider uppercase text-xs"
+                >View</span
+              >
+            </div>
+          </div>
+
+          <!-- Food -->
+          <div
+            class="masonry-item gallery-item group relative rounded-2xl overflow-hidden"
+            data-category="food"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=800&auto=format&fit=crop"
+              alt="Wood-fired Pizza"
+              class="w-full h-auto transition-transform duration-700 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white"
+            >
+              <i class="ph-bold ph-arrows-out text-3xl mb-2"></i>
+              <span class="font-bold tracking-wider uppercase text-xs"
+                >View</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="masonry-item gallery-item group relative rounded-2xl overflow-hidden"
+            data-category="food"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=800&auto=format&fit=crop"
+              alt="Aesthetic Coffee"
+              class="w-full h-auto transition-transform duration-700 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white"
+            >
+              <i class="ph-bold ph-arrows-out text-3xl mb-2"></i>
+              <span class="font-bold tracking-wider uppercase text-xs"
+                >View</span
+              >
+            </div>
+          </div>
+
+          <!-- Happy Pups -->
+          <div
+            class="masonry-item gallery-item group relative rounded-2xl overflow-hidden"
+            data-category="pups"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=800&auto=format&fit=crop"
+              alt="Dogs playing together"
+              class="w-full h-auto transition-transform duration-700 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white"
+            >
+              <i class="ph-bold ph-arrows-out text-3xl mb-2"></i>
+              <span class="font-bold tracking-wider uppercase text-xs"
+                >View</span
+              >
+            </div>
+          </div>
+
+          <!-- Spa & Pool -->
+          <div
+            class="masonry-item gallery-item group relative rounded-2xl overflow-hidden"
+            data-category="spa"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=800&auto=format&fit=crop"
+              alt="Dog Spa Bath"
+              class="w-full h-auto transition-transform duration-700 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white"
+            >
+              <i class="ph-bold ph-arrows-out text-3xl mb-2"></i>
+              <span class="font-bold tracking-wider uppercase text-xs"
+                >View</span
+              >
+            </div>
+          </div>
+
+          <!-- Happy Pups -->
+          <div
+            class="masonry-item gallery-item group relative rounded-2xl overflow-hidden"
+            data-category="pups"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=800&auto=format&fit=crop"
+              alt="Cute pup at cafe"
+              class="w-full h-auto transition-transform duration-700 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white"
+            >
+              <i class="ph-bold ph-arrows-out text-3xl mb-2"></i>
+              <span class="font-bold tracking-wider uppercase text-xs"
+                >View</span
+              >
+            </div>
+          </div>
+
+          <!-- Spa & Pool -->
+          <div
+            class="masonry-item gallery-item group relative rounded-2xl overflow-hidden"
+            data-category="spa"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1541280910158-c4e14f9c94a3?q=80&w=800&auto=format&fit=crop"
+              alt="Dog swimming in pool"
+              class="w-full h-auto transition-transform duration-700 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white"
+            >
+              <i class="ph-bold ph-arrows-out text-3xl mb-2"></i>
+              <span class="font-bold tracking-wider uppercase text-xs"
+                >View</span
+              >
+            </div>
+          </div>
+
+          <!-- Food -->
+          <div
+            class="masonry-item gallery-item group relative rounded-2xl overflow-hidden"
+            data-category="food"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800&auto=format&fit=crop"
+              alt="Gourmet Burger"
+              class="w-full h-auto transition-transform duration-700 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white"
+            >
+              <i class="ph-bold ph-arrows-out text-3xl mb-2"></i>
+              <span class="font-bold tracking-wider uppercase text-xs"
+                >View</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="masonry-item gallery-item group relative rounded-2xl overflow-hidden"
+            data-category="food"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1588168333986-5078d3ae3976?q=80&w=800&auto=format&fit=crop"
+              alt="Dog Treats"
+              class="w-full h-auto transition-transform duration-700 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white"
+            >
+              <i class="ph-bold ph-arrows-out text-3xl mb-2"></i>
+              <span class="font-bold tracking-wider uppercase text-xs"
+                >View</span
+              >
+            </div>
+          </div>
+
+          <!-- Happy Pups -->
+          <div
+            class="masonry-item gallery-item group relative rounded-2xl overflow-hidden"
+            data-category="pups"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1537151608804-ea2f1fa3dfc5?q=80&w=800&auto=format&fit=crop"
+              alt="Pet Parent and Dog"
+              class="w-full h-auto transition-transform duration-700 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white"
+            >
+              <i class="ph-bold ph-arrows-out text-3xl mb-2"></i>
+              <span class="font-bold tracking-wider uppercase text-xs"
+                >View</span
+              >
+            </div>
+          </div>
+
+          <!-- Spa & Pool -->
+          <div
+            class="masonry-item gallery-item group relative rounded-2xl overflow-hidden"
+            data-category="spa"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?q=80&w=800&auto=format&fit=crop"
+              alt="Professional Grooming"
+              class="w-full h-auto transition-transform duration-700 group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white"
+            >
+              <i class="ph-bold ph-arrows-out text-3xl mb-2"></i>
+              <span class="font-bold tracking-wider uppercase text-xs"
+                >View</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center md:hidden">
+          <a
+            href="https://instagram.com/pawpup.pet.cafe"
+            target="_blank"
+            class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white px-6 py-3 rounded-full font-bold shadow-lg"
+          >
+            <i class="ph-bold ph-instagram-logo text-xl"></i> Follow on
+            Instagram
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full Screen Lightbox Modal -->
+    <div
+      id="lightbox"
+      class="fixed inset-0 z-[100] bg-black/95 hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300"
+    >
+      <button
+        id="lightbox-close"
+        class="absolute top-6 right-6 z-[101] text-white/70 hover:text-white text-4xl transition-colors bg-black/50 w-12 h-12 rounded-full flex items-center justify-center"
+      >
+        <i class="ph ph-x"></i>
+      </button>
+
+      <button
+        id="lightbox-prev"
+        class="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 z-[101] text-white/70 hover:text-white text-5xl transition-colors bg-black/50 w-14 h-14 rounded-full flex items-center justify-center"
+      >
+        <i class="ph ph-caret-left"></i>
+      </button>
+
+      <img
+        id="lightbox-img"
+        src=""
+        alt="Gallery Image"
+        class="max-h-[85vh] max-w-[90vw] object-contain rounded-lg shadow-2xl transition-transform duration-300 transform scale-95 select-none"
+      />
+
+      <button
+        id="lightbox-next"
+        class="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 z-[101] text-white/70 hover:text-white text-5xl transition-colors bg-black/50 w-14 h-14 rounded-full flex items-center justify-center"
+      >
+        <i class="ph ph-caret-right"></i>
+      </button>
+
+      <div class="absolute bottom-6 left-0 w-full text-center px-4">
+        <p
+          id="lightbox-caption"
+          class="text-white/90 text-lg font-medium tracking-wide"
+        ></p>
+        <p id="lightbox-counter" class="text-white/50 text-sm mt-1"></p>
+      </div>
+    </div>
+
+    <!-- Booking Section -->
+    <section id="booking" class="py-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-brand-orange/5 z-0"></div>
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div
+          class="bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-orange-100 flex flex-col md:flex-row"
+        >
+          <div
+            class="md:w-2/5 bg-brand-orange text-white p-10 flex flex-col justify-between relative overflow-hidden"
+          >
+            <div
+              class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"
+            ></div>
+            <div class="relative z-10">
+              <h3 class="text-3xl font-heading font-bold mb-4">
+                Plan Your Visit
+              </h3>
+              <p class="text-white/80 mb-8">
+                Book a table for the cafe, schedule a spa session, or reserve a
+                spot for your pets.
+              </p>
+
+              <div class="space-y-6">
+                <div class="flex items-center gap-4">
+                  <div
+                    class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center"
+                  >
+                    <i class="ph-fill ph-clock text-xl"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm text-white/70">Timings</div>
+                    <div class="font-bold">12:00 PM - 10:30 PM</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div
+                    class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center"
+                  >
+                    <i class="ph-fill ph-phone text-xl"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm text-white/70">Call Us</div>
+                    <div class="font-bold">+91 73888 86960</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="md:w-3/5 p-10">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">
+              Reservation Form
+            </h3>
+            <form onsubmit="handleBooking(event)" class="space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-1"
+                    >Your Name</label
+                  >
+                  <input
+                    type="text"
+                    required
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-orange focus:ring-2 focus:ring-orange-200 transition-all outline-none"
+                    placeholder="John Doe"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-1"
+                    >Pet's Name (Optional)</label
+                  >
+                  <input
+                    type="text"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-orange focus:ring-2 focus:ring-orange-200 transition-all outline-none"
+                    placeholder="Buzo"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-1"
+                    >Date</label
+                  >
+                  <input
+                    type="date"
+                    id="bookingDate"
+                    required
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-orange focus:ring-2 focus:ring-orange-200 transition-all outline-none text-gray-600"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-1"
+                    >Service Type</label
                   >
                   <select
-                    id="cake-type"
-                    class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-200"
+                    id="serviceType"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-orange focus:ring-2 focus:ring-orange-200 transition-all outline-none bg-white text-gray-600"
                   >
-                    <option>Wedding Cake</option>
-                    <option>Birthday Cake</option>
-                    <option>Anniversary Cake</option>
-                    <option>Bento Cake / Mini Cake</option>
-                    <option>Cartoon/Theme Cake</option>
+                    <option>Cafe Dining</option>
+                    <option>Dog Spa / Grooming</option>
+                    <option>Swimming Pool</option>
+                    <option>Play Area</option>
+                    <option>Other / Multiple Services</option>
                   </select>
                 </div>
-                <div>
-                  <label class="block text-sm font-medium text-stone-600 mb-2"
-                    >Describe Your Vision</label
-                  >
-                  <textarea
-                    id="cake-desc"
-                    rows="3"
-                    class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-200"
-                    placeholder="Colors, theme, message on cake..."
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  class="w-full py-4 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1"
+                  >Number of Guests (Humans & Pets)</label
                 >
-                  Get Quote on WhatsApp
-                  <i class="fa-solid fa-arrow-right ml-1"></i>
-                </button>
-              </form>
-            </div>
+                <input
+                  type="text"
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-orange focus:ring-2 focus:ring-orange-200 transition-all outline-none"
+                  placeholder="e.g., 2 Humans, 1 Dog"
+                />
+              </div>
+
+              <button
+                type="submit"
+                class="w-full bg-brand-dark hover:bg-black text-white py-4 rounded-xl font-bold text-lg transition-colors mt-4"
+              >
+                Request Booking
+              </button>
+              <p class="text-xs text-center text-gray-500 mt-3">
+                You will be redirected to WhatsApp to confirm your booking.
+              </p>
+            </form>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Gallery Section -->
-      <section id="gallery" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-serif text-amber-900 mb-4">
-              Sweet Creations
-            </h2>
-            <p class="text-stone-600 max-w-2xl mx-auto">
-              A glimpse into our freshly baked, handcrafted masterpieces.
-            </p>
-          </div>
+    <!-- Map & Location -->
+    <section class="h-96 w-full relative">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.4002674395616!2d81.0028!3d26.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbKwDUxJzAwLjAiTiA4McKwMDAnMTAuMSJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+        class="w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-500"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
 
-          <div
-            class="columns-2 lg:columns-3 gap-4 sm:gap-6 space-y-4 sm:space-y-6"
-            id="gallery-grid"
-          >
-            <!-- Injected by JS -->
-          </div>
+      <div
+        class="absolute bottom-8 left-1/2 transform -translate-x-1/2 glass px-8 py-4 rounded-2xl shadow-xl flex items-center gap-4 w-11/12 max-w-md bg-white/90"
+      >
+        <div
+          class="bg-brand-orange w-12 h-12 rounded-full flex items-center justify-center text-white flex-shrink-0"
+        >
+          <i class="ph-fill ph-map-pin text-2xl"></i>
         </div>
-      </section>
-
-      <!-- Testimonials Section -->
-      <section id="reviews" class="py-24 bg-amber-50 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-serif text-amber-900 mb-4">
-              Loved by Patna
-            </h2>
-            <div
-              class="flex items-center justify-center gap-2 text-xl font-medium text-stone-600"
-            >
-              4.8 <i class="fa-solid fa-star text-amber-500"></i> rating on
-              Google (106 Reviews)
-            </div>
-          </div>
-
-          <div
-            class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar px-4 sm:px-0"
-            id="reviews-grid"
-          >
-            <!-- Injected by JS -->
-          </div>
-
-          <div class="text-center mt-10">
-            <a
-              href="https://www.google.com/maps/search/Gold+Bakers+CRPF+Camp+Patna"
-              target="_blank"
-              class="inline-flex items-center gap-2 px-8 py-4 bg-white border border-amber-200 text-amber-900 rounded-full font-bold hover:bg-amber-50 transition-colors shadow-sm hover:shadow-md"
-            >
-              Read More on Google
-              <i class="fa-brands fa-google ml-1 text-blue-500"></i>
-            </a>
-          </div>
+        <div>
+          <h4 class="font-bold text-gray-800">Visit Us</h4>
+          <p class="text-sm text-gray-600 line-clamp-2">
+            B3/31, Vinay Khand 3, Gomti Nagar, Lucknow, UP 226010
+          </p>
         </div>
-      </section>
-
-      <!-- Map Location Section -->
-      <section id="location" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-serif text-amber-900 mb-4">
-              Visit Us
-            </h2>
-            <p class="text-stone-600 max-w-2xl mx-auto">
-              Drop by for dine-in, takeaway, or kerbside pickup. We are open 24
-              hours!
-            </p>
-          </div>
-
-          <div
-            class="rounded-3xl overflow-hidden shadow-2xl border border-stone-100 bg-stone-50 p-2 sm:p-4"
-          >
-            <iframe
-              width="100%"
-              height="450"
-              style="border: 0; border-radius: 1rem"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.29180245729!2d85.08269157518585!3d25.62843911409931!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed5724e68bde35%3A0x3808c7629285e716!2sGOLD%20BAKERS!5e0!3m2!1sen!2sin!4v1778139498128!5m2!1sen!2sin"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            >
-            </iframe>
-          </div>
-        </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
     <!-- Footer -->
     <footer
-      class="bg-amber-950 text-amber-50/70 pt-20 pb-10 border-t-4 border-amber-500"
+      class="bg-brand-dark text-white pt-20 pb-10 rounded-t-[3rem] mt-[-2rem] relative z-20"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          <div class="col-span-1 md:col-span-2">
-            <span
-              class="font-serif text-3xl font-bold text-white tracking-tight mb-6 block"
-            >
-              GOLD BAKERS<span class="text-amber-400">.</span>
-            </span>
-            <p class="mb-6 max-w-sm">
-              Wholesale bakery, Chocolate shop, and Cupcake shop. Premium
-              quality Cake at wow price. Available 24/7 in Patna, Bihar.
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16"
+        >
+          <div class="col-span-1 md:col-span-2 lg:col-span-1">
+            <div class="flex items-center gap-2 mb-6">
+              <i class="ph-fill ph-paw-print text-brand-orange text-3xl"></i>
+              <span class="font-heading font-bold text-2xl tracking-tight"
+                >PawPup Cafe</span
+              >
+            </div>
+            <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+              Lucknow's first dog cafe, offering a perfect blend of comfort,
+              fun, for both humans and hounds.
             </p>
+            <div class="flex space-x-4">
+              <a
+                href="https://instagram.com/pawpup.pet.cafe"
+                target="_blank"
+                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"
+              >
+                <i class="ph-fill ph-instagram-logo text-xl"></i>
+              </a>
+              <a
+                href="mailto:pawpupcafe@gmail.com"
+                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"
+              >
+                <i class="ph-fill ph-envelope-simple text-xl"></i>
+              </a>
+            </div>
           </div>
 
           <div>
             <h4
-              class="text-white font-bold mb-6 uppercase tracking-wider text-sm"
+              class="font-bold text-lg mb-6 text-white border-b border-white/10 pb-2 inline-block"
             >
-              Visit Us
+              Explore
             </h4>
-            <ul class="space-y-4">
-              <li class="flex items-start">
-                <i
-                  class="fa-solid fa-location-dot text-amber-400 mr-3 flex-shrink-0 mt-1"
-                ></i>
-                <span
-                  >90ft road, Gold Bakers & Amul store, Ashiyana Digha main
-                  road, near CRPF Camp, corner, Ramnihora path, Patna, Bihar
-                  800024</span
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#about"
+                  class="text-gray-400 hover:text-brand-orange transition-colors"
+                  >About Us</a
                 >
               </li>
-              <li class="flex items-center">
-                <i
-                  class="fa-solid fa-phone text-amber-400 mr-3 flex-shrink-0"
-                ></i>
-                <span>+91 88776 69975</span>
+              <li>
+                <a
+                  href="#menu"
+                  class="text-gray-400 hover:text-brand-orange transition-colors"
+                  >Cafe Menu</a
+                >
               </li>
-              <li class="flex items-center">
-                <i
-                  class="fa-solid fa-envelope text-amber-400 mr-3 flex-shrink-0"
-                ></i>
-                <span>thegoldbakers@gmail.com</span>
+              <li>
+                <a
+                  href="#spa"
+                  class="text-gray-400 hover:text-brand-orange transition-colors"
+                  >Dog's Spa</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#pool"
+                  class="text-gray-400 hover:text-brand-orange transition-colors"
+                  >Swimming Pool</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#playarea"
+                  class="text-gray-400 hover:text-brand-orange transition-colors"
+                  >Play Area</a
+                >
               </li>
             </ul>
           </div>
 
-          <div>
+          <div class="col-span-1 md:col-span-2 lg:col-span-2">
             <h4
-              class="text-white font-bold mb-6 uppercase tracking-wider text-sm"
+              class="font-bold text-lg mb-6 text-white border-b border-white/10 pb-2 inline-block"
             >
-              Hours
+              Contact Details
             </h4>
-            <ul class="space-y-2">
-              <li
-                class="flex justify-between border-b border-amber-900/50 pb-2"
-              >
-                <span>Mon - Sun</span>
-                <span class="text-white font-bold">Open 24 hours</span>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <i class="ph-fill ph-map-pin text-brand-orange mt-1"></i>
+                <span class="text-gray-400"
+                  >B3/31, Vinay Khand 3, Gomti Nagar,<br />Lucknow, Uttar
+                  Pradesh 226010</span
+                >
               </li>
-              <li class="pt-4 text-sm italic text-amber-200/50">
-                *Dine-in, Takeaway & Delivery available.
+              <li class="flex items-center gap-3">
+                <i class="ph-fill ph-phone text-brand-orange"></i>
+                <span class="text-gray-400">+91 73888 86960</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="ph-fill ph-user text-brand-orange"></i>
+                <span class="text-gray-400">Contact: Nistha Agarwal</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="ph-fill ph-envelope text-brand-orange"></i>
+                <span class="text-gray-400">pawpupcafe@gmail.com</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div
-          class="border-t border-amber-900 pt-8 flex flex-col md:flex-row justify-between items-center text-sm gap-4"
+          class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500"
         >
+          <p>&copy; 2026 PawPup Cafe. All rights reserved.</p>
           <p>
-            &copy; <span id="year"></span> Gold Bakers. All rights reserved.
+            Designed & Developed with
+            <i class="ph-fill ph-heart text-brand-orange mx-1"></i> by KAUSHAL
           </p>
-          <div class="flex gap-4">
-            <a href="#" class="hover:text-white transition-colors"
-              >Privacy Policy</a
-            >
-            <a href="#" class="hover:text-white transition-colors"
-              >Terms of Service</a
-            >
-          </div>
         </div>
       </div>
     </footer>
 
-    <!-- Floating WhatsApp -->
+    <!-- Floating WhatsApp Button -->
     <a
-      href="https://wa.me/918877669975"
+      href="https://wa.me/917388886960"
       target="_blank"
-      rel="noopener noreferrer"
-      class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform z-50 flex items-center justify-center"
-      style="box-shadow: 0 0 20px rgba(34, 197, 94, 0.4)"
+      class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer group"
     >
-      <i class="fa-brands fa-whatsapp text-3xl"></i>
+      <i class="ph-fill ph-whatsapp-logo text-3xl"></i>
+      <span
+        class="absolute right-16 bg-black text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none"
+      >
+        Chat with us
+      </span>
     </a>
 
-    <!-- Cart Sidebar -->
-    <div
-      id="cart-backdrop"
-      class="fixed inset-0 bg-stone-900/50 backdrop-blur-sm z-50 transition-opacity hidden"
-      onclick="toggleCart(false)"
-    ></div>
-
-    <div
-      id="cart-sidebar"
-      class="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col"
-    >
-      <div
-        class="p-6 border-b border-stone-100 flex justify-between items-center"
-      >
-        <h2
-          class="text-2xl font-serif font-bold text-amber-900 flex items-center gap-2"
-        >
-          <i class="fa-solid fa-bag-shopping"></i> Your Order
-        </h2>
-        <button
-          onclick="toggleCart(false)"
-          class="p-2 text-stone-400 hover:text-stone-800 transition-colors"
-        >
-          <i class="fa-solid fa-xmark text-xl"></i>
-        </button>
-      </div>
-
-      <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-6">
-        <!-- Injected by JS -->
-      </div>
-
-      <div
-        id="cart-footer"
-        class="p-6 border-t border-stone-100 bg-stone-50 hidden"
-      >
-        <div class="flex justify-between items-center mb-6">
-          <span class="text-stone-500 font-medium">Subtotal</span>
-          <span id="cart-total" class="text-2xl font-bold text-amber-900"
-            >₹0</span
-          >
-        </div>
-        <button
-          onclick="handleCheckout()"
-          class="w-full py-4 bg-green-500 hover:bg-green-600 text-white rounded-xl font-bold text-lg transition-all shadow-md flex items-center justify-center gap-2"
-        >
-          Checkout via WhatsApp
-        </button>
-        <p class="text-center text-xs text-stone-400 mt-4">
-          Taxes and delivery calculated on WhatsApp
-        </p>
-      </div>
-    </div>
-
-    <!-- Application Logic -->
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      // --- DATA ---
-      const MENU_DATA = {
-        Highlights: [
-          {
-            id: "c1",
-            name: "Chocolate Cake",
-            price: 299,
-            img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&q=80",
-            desc: "Pure vegan , Real choco taste 😋",
-          },
-          {
-            id: "c2",
-            name: "Chocolate Fudge Cake",
-            price: 399,
-            img: "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=500&q=80",
-            desc: "A very chocolatey, moist Chocolate Fudge Cake that is similar to chocolate mud cake, but not as dense. Made with both melted chocolate and cocoa, AND topped with chocolate ganache, this one is sure to satisfying your chocolate cravings!",
-          },
-          {
-            id: "c3",
-            name: "Choc Truffle Cakes",
-            price: 399,
-            img: "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=500&q=80",
-            desc: "a chocolate layer cake recipe with dense, moist chocolate cake, silky chocolate truffle frosting and chocolate flakes. Chocolate Truffle Cake will satisfy any chocolate lovers craving... It is dreamy chocolate heaven right there. Try ones at GB GOLD BAKERS. 🤗❤️",
-          },
-          {
-            id: "c4",
-            name: "Wedding Cake",
-            price: 599,
-            img: "https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=500&q=80",
-            desc: "A gorgeous wedding A wedding cake is often the focal point of the reception and is given a prominent location. The tradition of the bride cutting the first cake piece is thought to bring happiness and prosperity.",
-          },
-          {
-            id: "c5",
-            name: "Bento Cake / Mini Cake",
-            price: 299,
-            img: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=500&q=80",
-            desc: "Lunchbox (or bento) cakes are mini cakes originating from South Korea. They are packaged and eaten inside takeout boxes, making them perfect for gifts. Bento cake size is about two-by-four-inch and weighs about 300-350 grams.",
-          },
-        ],
-        "Cupcakes & More": [
-          {
-            id: "cm1",
-            name: "Vanilla Cupcakes",
-            price: 70,
-            img: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=500&q=80",
-            desc: "Beautifully piped vanilla cupcakes in assorted designs.",
-          },
-          {
-            id: "cm2",
-            name: "Fudgy Brownies",
-            price: 80,
-            img: "https://images.unsplash.com/photo-1604693155708-3ce80a373bfa?w=500&q=80",
-            desc: "Melt-in-your-mouth intensely dark chocolate fudge.",
-          },
-          {
-            id: "cm3",
-            name: "Rum Balls",
-            price: 60,
-            img: "https://images.unsplash.com/photo-1605807646983-377bc5a76493?w=500&q=80",
-            desc: "Rich, chocolatey treats perfect for a quick bite.",
-          },
-        ],
-      };
-
-      const REVIEWS = [
-        {
-          id: 1,
-          name: "Ravi Kumar",
-          text: "Amazing Choc Truffle Cake! The quality is literally wow for the price. Best bakery in Rajeev Nagar area.",
-          stars: 5,
-        },
-        {
-          id: 2,
-          name: "Neha Sinha",
-          text: "I love their pure vegan chocolate cake options. The taste is incredibly rich and moist. Highly recommend Gold Bakers!",
-          stars: 5,
-        },
-        {
-          id: 3,
-          name: "Amit Sharma",
-          text: "Ordered a wedding cake from here. The design was beautiful and the delivery was right on time. Great service.",
-          stars: 5,
-        },
-        {
-          id: 4,
-          name: "Pooja Singh",
-          text: "Their Bento cakes are the cutest things ever! Perfect for small celebrations and gifting.",
-          stars: 5,
-        },
-        {
-          id: 5,
-          name: "Vikash",
-          text: "Open 24 hours is a lifesaver for midnight cravings! Their Chocolate Fudge Cake is a must-try.",
-          stars: 4,
-        },
-      ];
-
-      const GALLERY_IMAGES = [
-        "https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=600&q=80",
-        "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=600&q=80",
-        "https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=600&q=80",
-        "https://images.unsplash.com/photo-1562440499-64c9a111f713?w=600&q=80",
-        "https://images.unsplash.com/photo-1588195538328-d604faa06240?w=600&q=80",
-        "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?w=600&q=80",
-      ];
-
-      // --- STATE ---
-      let cart = [];
-      let activeCategory = Object.keys(MENU_DATA)[0];
-      const allItems = Object.values(MENU_DATA).flat();
-
-      // --- INITIALIZATION ---
-      document.addEventListener("DOMContentLoaded", () => {
-        setTimeout(() => {
-          const loader = document.getElementById("loading-screen");
-          loader.style.opacity = "0";
-          setTimeout(() => (loader.style.display = "none"), 1000);
-        }, 1500);
-
-        document.getElementById("year").textContent = new Date().getFullYear();
-
-        renderCategoryPills();
-        renderMenuGrid();
-        renderGallery();
-        renderReviews();
-        updateCartUI();
+      AOS.init({
+        once: true,
+        offset: 50,
+        duration: 800,
+        easing: "ease-out-cubic",
       });
 
-      // --- MENU LOGIC ---
-      function renderCategoryPills() {
-        const container = document.getElementById("category-filters");
-        container.innerHTML = "";
-        Object.keys(MENU_DATA).forEach((category) => {
-          const isActive = category === activeCategory;
-          const btn = document.createElement("button");
-          btn.className = `px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${isActive ? "bg-amber-900 text-white shadow-md" : "bg-white text-stone-600 hover:bg-amber-50 border border-stone-200"}`;
-          btn.textContent = category;
-          btn.onclick = () => {
-            activeCategory = category;
-            renderCategoryPills();
-            renderMenuGrid();
-          };
-          container.appendChild(btn);
-        });
-      }
+      window.addEventListener("load", () => {
+        const loader = document.getElementById("loader");
+        setTimeout(() => {
+          loader.style.opacity = "0";
+          setTimeout(() => {
+            loader.style.display = "none";
+            AOS.refresh();
+          }, 500);
+        }, 800);
+      });
 
-      function renderMenuGrid() {
-        const container = document.getElementById("menu-grid");
-        container.innerHTML = "";
-        const items = MENU_DATA[activeCategory];
+      const navbar = document.getElementById("navbar");
+      const navInner = document.getElementById("nav-inner");
 
-        items.forEach((item) => {
-          container.innerHTML += `
-            <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
-              <div class="relative h-64 overflow-hidden">
-                <img src="${item.img}" alt="${item.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
-                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-amber-900 shadow-sm">
-                  ₹${item.price}
-                </div>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-serif font-bold text-stone-800 mb-2">${item.name}</h3>
-                <p class="text-stone-500 text-sm mb-6 line-clamp-3">${item.desc}</p>
-                <button onclick="addToCart('${item.id}')" class="w-full py-3 bg-amber-50 hover:bg-amber-500 hover:text-white text-amber-700 rounded-xl font-medium transition-colors flex items-center justify-center gap-2">
-                  <i class="fa-solid fa-bag-shopping"></i> Add to Order
-                </button>
-              </div>
-            </div>
-          `;
-        });
-      }
-
-      function renderGallery() {
-        const container = document.getElementById("gallery-grid");
-        GALLERY_IMAGES.forEach((src) => {
-          container.innerHTML += `
-            <div class="break-inside-avoid relative rounded-2xl overflow-hidden group mb-4 sm:mb-6 cursor-pointer">
-              <img src="${src}" alt="Gallery item" loading="lazy" class="w-full object-cover rounded-2xl" />
-              <div class="absolute inset-0 bg-amber-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
-                <i class="fa-solid fa-heart text-2xl sm:text-3xl text-white"></i>
-              </div>
-            </div>
-          `;
-        });
-      }
-
-      function renderReviews() {
-        const container = document.getElementById("reviews-grid");
-        REVIEWS.forEach((review) => {
-          let starsHTML = "";
-          for (let i = 0; i < review.stars; i++)
-            starsHTML += '<i class="fa-solid fa-star text-amber-400"></i>';
-
-          container.innerHTML += `
-            <div class="flex-none w-[85vw] sm:w-[400px] snap-center bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-shadow relative whitespace-normal">
-              <div class="absolute top-6 right-8 text-amber-100 text-6xl font-serif leading-none">"</div>
-              <div class="flex gap-1 mb-6 relative z-10">${starsHTML}</div>
-              <p class="text-stone-600 mb-6 relative z-10 italic">"${review.text}"</p>
-              <h4 class="font-bold text-amber-900">— ${review.name}</h4>
-            </div>
-          `;
-        });
-      }
-
-      // --- CART LOGIC ---
-      function toggleCart(show) {
-        const sidebar = document.getElementById("cart-sidebar");
-        const backdrop = document.getElementById("cart-backdrop");
-        if (show) {
-          sidebar.classList.remove("translate-x-full");
-          backdrop.classList.remove("hidden");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 20) {
+          navInner.classList.remove("mt-4", "max-w-7xl", "rounded-full");
+          navInner.classList.add(
+            "mt-0",
+            "max-w-full",
+            "rounded-none",
+            "bg-white/90",
+            "border-b",
+            "border-gray-100",
+          );
         } else {
-          sidebar.classList.add("translate-x-full");
-          backdrop.classList.add("hidden");
+          navInner.classList.add("mt-4", "max-w-7xl", "rounded-full");
+          navInner.classList.remove(
+            "mt-0",
+            "max-w-full",
+            "rounded-none",
+            "bg-white/90",
+            "border-b",
+            "border-gray-100",
+          );
         }
-      }
+      });
 
-      function addToCart(id) {
-        const item = allItems.find((i) => i.id === id);
-        if (!item) return;
+      const menuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      let isMenuOpen = false;
 
-        const existing = cart.find((i) => i.id === id);
-        if (existing) {
-          existing.qty++;
+      menuBtn.addEventListener("click", () => {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          mobileMenu.classList.remove("hidden");
+          setTimeout(() => {
+            mobileMenu.classList.remove("opacity-0", "scale-y-0");
+            mobileMenu.classList.add("opacity-100", "scale-y-100");
+            menuBtn.innerHTML = '<i class="ph ph-x text-3xl"></i>';
+          }, 10);
         } else {
-          cart.push({ ...item, qty: 1 });
+          mobileMenu.classList.remove("opacity-100", "scale-y-100");
+          mobileMenu.classList.add("opacity-0", "scale-y-0");
+          menuBtn.innerHTML = '<i class="ph ph-list text-3xl"></i>';
+          setTimeout(() => {
+            mobileMenu.classList.add("hidden");
+          }, 300);
         }
-        updateCartUI();
-        toggleCart(true);
-      }
+      });
 
-      function updateQty(id, delta) {
-        const item = cart.find((i) => i.id === id);
-        if (item) {
-          item.qty += delta;
-          if (item.qty <= 0) {
-            cart = cart.filter((i) => i.id !== id);
-          }
-        }
-        updateCartUI();
-      }
-
-      function updateCartUI() {
-        const container = document.getElementById("cart-items");
-        const footer = document.getElementById("cart-footer");
-        const totalEl = document.getElementById("cart-total");
-        const badge = document.getElementById("cart-badge");
-
-        let total = 0;
-        let count = 0;
-        container.innerHTML = "";
-
-        if (cart.length === 0) {
-          container.innerHTML = `
-            <div class="h-full flex flex-col items-center justify-center text-stone-400 space-y-4 pt-20">
-              <i class="fa-solid fa-bag-shopping text-6xl opacity-20"></i>
-              <p class="text-lg">Your sweet cart is empty</p>
-              <button onclick="toggleCart(false)" class="text-amber-500 font-medium hover:underline">Browse Menu</button>
-            </div>
-          `;
-          footer.classList.add("hidden");
-          badge.classList.add("hidden");
-        } else {
-          cart.forEach((item) => {
-            total += item.price * item.qty;
-            count += item.qty;
-            container.innerHTML += `
-              <div class="flex gap-4 items-center bg-stone-50 p-3 rounded-2xl">
-                <img src="${item.img}" class="w-20 h-20 object-cover rounded-xl shadow-sm" />
-                <div class="flex-1">
-                  <h4 class="font-bold text-stone-800">${item.name}</h4>
-                  <p class="text-amber-600 font-medium text-sm">₹${item.price}</p>
-                  <div class="flex items-center gap-3 mt-2 bg-white w-max rounded-lg border border-stone-200">
-                    <button onclick="updateQty('${item.id}', -1)" class="p-1 px-2 text-stone-500 hover:text-amber-600"><i class="fa-solid fa-minus text-xs"></i></button>
-                    <span class="text-sm font-bold w-4 text-center">${item.qty}</span>
-                    <button onclick="updateQty('${item.id}', 1)" class="p-1 px-2 text-stone-500 hover:text-amber-600"><i class="fa-solid fa-plus text-xs"></i></button>
-                  </div>
-                </div>
-                <div class="font-bold text-amber-900">₹${item.price * item.qty}</div>
-              </div>
-            `;
-          });
-          totalEl.textContent = `₹${total}`;
-          footer.classList.remove("hidden");
-
-          badge.textContent = count;
-          badge.classList.remove("hidden");
-          badge.classList.add("flex");
-        }
-      }
-
-      function handleCheckout() {
-        let total = 0;
-        let text = `Hello Gold Bakers! 🎂 I'd like to place an order:\n\n`;
-
-        cart.forEach((item) => {
-          total += item.price * item.qty;
-          text += `- ${item.qty}x ${item.name} (₹${item.price * item.qty})\n`;
+      document.querySelectorAll("#mobile-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (isMenuOpen) menuBtn.click();
         });
+      });
 
-        text += `\n*Total: ₹${total}*\n\nPlease confirm my order.`;
-        window.open(
-          `https://wa.me/918877669975?text=${encodeURIComponent(text)}`,
-          "_blank",
+      const pawContainer = document.getElementById("paws-container");
+      const pawSVG = `<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"><path d="M96,72a24,24,0,1,1-24-24A24,24,0,0,1,96,72Zm32-48a24,24,0,1,0,24,24A24,24,0,0,0,128,24Zm80,24a24,24,0,1,0,24,24A24,24,0,0,0,208,48Zm-22.3,86.29A51.78,51.78,0,0,0,137.93,104H118.07a51.78,51.78,0,0,0-47.77,30.29C61.43,151.71,48,185.08,48,200a32,32,0,0,0,32,32h96a32,32,0,0,0,32-32C208,185.08,194.57,151.71,185.7,134.29Z"></path></svg>`;
+
+      function createPaw() {
+        const paw = document.createElement("div");
+        paw.classList.add("floating-paw", "text-brand-orange");
+
+        const size = Math.random() * 2 + 1;
+        const left = Math.random() * 100;
+        const duration = Math.random() * 10 + 10;
+        const delay = Math.random() * 5;
+
+        paw.style.width = `${size}rem`;
+        paw.style.height = `${size}rem`;
+        paw.style.left = `${left}vw`;
+        paw.style.animationDuration = `${duration}s`;
+        paw.style.animationDelay = `${delay}s`;
+        paw.innerHTML = pawSVG;
+
+        pawContainer.appendChild(paw);
+
+        setTimeout(
+          () => {
+            paw.remove();
+          },
+          (duration + delay) * 1000,
         );
       }
 
-      // --- CUSTOM CAKE FORM ---
-      document
-        .getElementById("custom-cake-form")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          const type = document.getElementById("cake-type").value;
-          const desc = document.getElementById("cake-desc").value;
+      const today = new Date().toISOString().split("T")[0];
+      document.getElementById("bookingDate").setAttribute("min", today);
 
-          let text = `Hi Gold Bakers, I want to discuss a custom cake order.\n\n*Type:* ${type}\n*Vision:* ${desc || "Not specified"}\n\nPlease let me know the process!`;
-          window.open(
-            `https://wa.me/918877669975?text=${encodeURIComponent(text)}`,
-            "_blank",
+      setInterval(createPaw, 2000);
+      for (let i = 0; i < 5; i++) createPaw();
+
+      // Menu Tab Switcher Function
+      function switchMenu(tab) {
+        const pupsContent = document.getElementById("menu-pups");
+        const hoomansContent = document.getElementById("menu-hoomans");
+        const btnPups = document.getElementById("tab-pups");
+        const btnHoomans = document.getElementById("tab-hoomans");
+
+        if (tab === "pups") {
+          btnPups.classList.add("bg-brand-orange", "text-white", "shadow-lg");
+          btnPups.classList.remove("text-gray-600", "hover:text-brand-orange");
+          btnHoomans.classList.remove(
+            "bg-brand-orange",
+            "text-white",
+            "shadow-lg",
           );
-        });
+          btnHoomans.classList.add("text-gray-600", "hover:text-brand-orange");
 
-      // --- MOBILE MENU ---
-      function toggleMobileMenu() {
-        const menu = document.getElementById("mobile-menu");
-        const icon = document.getElementById("mobile-menu-icon");
+          hoomansContent.classList.replace("opacity-100", "opacity-0");
+          hoomansContent.classList.replace("scale-100", "scale-95");
+          setTimeout(() => {
+            hoomansContent.classList.add("hidden");
+            hoomansContent.classList.remove("block");
+            pupsContent.classList.remove("hidden");
+            pupsContent.classList.add("block");
 
-        if (menu.classList.contains("hidden")) {
-          menu.classList.remove("hidden");
-          menu.classList.add("animate-fade-in-down");
-          icon.classList.remove("fa-bars");
-          icon.classList.add("fa-xmark");
+            setTimeout(() => {
+              pupsContent.classList.replace("opacity-0", "opacity-100");
+              pupsContent.classList.replace("scale-95", "scale-100");
+            }, 50);
+          }, 400);
         } else {
-          menu.classList.add("hidden");
-          menu.classList.remove("animate-fade-in-down");
-          icon.classList.remove("fa-xmark");
-          icon.classList.add("fa-bars");
+          btnHoomans.classList.add(
+            "bg-brand-orange",
+            "text-white",
+            "shadow-lg",
+          );
+          btnHoomans.classList.remove(
+            "text-gray-600",
+            "hover:text-brand-orange",
+          );
+          btnPups.classList.remove(
+            "bg-brand-orange",
+            "text-white",
+            "shadow-lg",
+          );
+          btnPups.classList.add("text-gray-600", "hover:text-brand-orange");
+
+          pupsContent.classList.replace("opacity-100", "opacity-0");
+          pupsContent.classList.replace("scale-100", "scale-95");
+          setTimeout(() => {
+            pupsContent.classList.add("hidden");
+            pupsContent.classList.remove("block");
+            hoomansContent.classList.remove("hidden");
+            hoomansContent.classList.add("block");
+
+            setTimeout(() => {
+              hoomansContent.classList.replace("opacity-0", "opacity-100");
+              hoomansContent.classList.replace("scale-95", "scale-100");
+            }, 50);
+          }, 400);
         }
       }
+
+      function handleBooking(e) {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.elements[0].value;
+        const petName = form.elements[1].value;
+        const date = form.elements[2].value;
+        const service = form.elements[3].value;
+        const guests = form.elements[4].value;
+
+        const text = `Hi PawPup Cafe! 🐾\nI would like to make a reservation.\n\n*Name:* ${name}\n*Pet's Name:* ${petName || "N/A"}\n*Date:* ${date}\n*Service:* ${service}\n*Guests:* ${guests}\n\nPlease confirm availability. Thanks!`;
+
+        const encodedText = encodeURIComponent(text);
+        window.open(`https://wa.me/917388886960?text=${encodedText}`, "_blank");
+        form.reset();
+      }
+
+      // --- Gallery Filter & Lightbox Logic ---
+      document.addEventListener("DOMContentLoaded", () => {
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        const galleryItems = document.querySelectorAll(".gallery-item");
+
+        // Lightbox Elements
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const lightboxCaption = document.getElementById("lightbox-caption");
+        const lightboxCounter = document.getElementById("lightbox-counter");
+        const btnClose = document.getElementById("lightbox-close");
+        const btnPrev = document.getElementById("lightbox-prev");
+        const btnNext = document.getElementById("lightbox-next");
+
+        let currentFilter = "all";
+        let visibleItems = Array.from(galleryItems);
+        let currentIndex = 0;
+
+        // 1. Filtering Logic
+        filterBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            // Update active button styling
+            filterBtns.forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+
+            currentFilter = btn.getAttribute("data-filter");
+
+            // Filter items
+            visibleItems = [];
+            galleryItems.forEach((item) => {
+              if (
+                currentFilter === "all" ||
+                item.getAttribute("data-category") === currentFilter
+              ) {
+                item.style.display = "block";
+                visibleItems.push(item);
+                // Slight animation for reappearing
+                item.style.animation = "fadeIn 0.5s ease forwards";
+              } else {
+                item.style.display = "none";
+              }
+            });
+          });
+        });
+
+        // 2. Open Lightbox
+        galleryItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            const imgElement = item.querySelector("img");
+            const src = imgElement.src;
+            const alt = imgElement.alt;
+
+            // Find index in currently visible items
+            currentIndex = visibleItems.indexOf(item);
+
+            openLightbox(src, alt);
+          });
+        });
+
+        function openLightbox(src, alt) {
+          lightboxImg.src = src;
+          lightboxCaption.textContent = alt;
+          updateCounter();
+
+          lightbox.classList.remove("hidden");
+          // Trigger reflow to ensure transition works
+          void lightbox.offsetWidth;
+          lightbox.classList.remove("opacity-0");
+          lightbox.classList.add("opacity-100");
+
+          setTimeout(() => {
+            lightboxImg.classList.remove("scale-95");
+            lightboxImg.classList.add("scale-100");
+          }, 50);
+
+          document.body.style.overflow = "hidden"; // Prevent background scrolling
+        }
+
+        // 3. Close Lightbox
+        function closeLightbox() {
+          lightbox.classList.remove("opacity-100");
+          lightbox.classList.add("opacity-0");
+          lightboxImg.classList.remove("scale-100");
+          lightboxImg.classList.add("scale-95");
+
+          setTimeout(() => {
+            lightbox.classList.add("hidden");
+            lightboxImg.src = ""; // Clear source to prevent ghost image on next open
+          }, 300);
+
+          document.body.style.overflow = ""; // Restore scrolling
+        }
+
+        btnClose.addEventListener("click", closeLightbox);
+
+        // Close on background click
+        lightbox.addEventListener("click", (e) => {
+          if (e.target === lightbox) {
+            closeLightbox();
+          }
+        });
+
+        // 4. Navigate Lightbox
+        function showImage(index) {
+          if (visibleItems.length === 0) return;
+
+          // Handle looping
+          if (index < 0) index = visibleItems.length - 1;
+          if (index >= visibleItems.length) index = 0;
+
+          currentIndex = index;
+          const newItem = visibleItems[currentIndex];
+          const imgElement = newItem.querySelector("img");
+
+          // Animate change
+          lightboxImg.classList.add("opacity-50", "scale-95");
+
+          setTimeout(() => {
+            lightboxImg.src = imgElement.src;
+            lightboxCaption.textContent = imgElement.alt;
+            updateCounter();
+
+            lightboxImg.classList.remove("opacity-50", "scale-95");
+          }, 200);
+        }
+
+        function updateCounter() {
+          lightboxCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
+        }
+
+        btnPrev.addEventListener("click", (e) => {
+          e.stopPropagation();
+          showImage(currentIndex - 1);
+        });
+
+        btnNext.addEventListener("click", (e) => {
+          e.stopPropagation();
+          showImage(currentIndex + 1);
+        });
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+          if (lightbox.classList.contains("hidden")) return;
+
+          if (e.key === "Escape") closeLightbox();
+          if (e.key === "ArrowLeft") showImage(currentIndex - 1);
+          if (e.key === "ArrowRight") showImage(currentIndex + 1);
+        });
+      });
     </script>
+    <style>
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
   </body>
 </html>
